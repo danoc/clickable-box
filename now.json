@@ -1,4 +1,5 @@
 {
   "version": 2,
+  "alias": ["clickable-box"],
   "builds": [{ "src": "package.json", "use": "@now/static-build" }]
 }
