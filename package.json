@@ -6,7 +6,7 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "test": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
-    "build-storybook": "build-storybook --output-dir dist"
+    "now-build": "build-storybook --output-dir dist"
   },
   "repository": {
     "type": "git",
