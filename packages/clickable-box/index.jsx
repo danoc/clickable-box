@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class ClickableBox extends React.Component {
   constructor(props) {
@@ -36,6 +37,10 @@ class ClickableBox extends React.Component {
     );
   }
 }
+
+ClickableBox.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 
 export default React.forwardRef((props, ref) => (
   <ClickableBox innerRef={ref} {...props} />
