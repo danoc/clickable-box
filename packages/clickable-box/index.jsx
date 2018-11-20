@@ -25,6 +25,7 @@ class ClickableBox extends React.Component {
 
   render() {
     const { innerRef, ...otherProps } = this.props;
+
     return (
       <span
         tabIndex="0"

@@ -1,46 +1,47 @@
 {
-  "name": "clickable-box",
-  "version": "0.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "name": "clickable-box-monorepo",
+  "private": true,
   "scripts": {
     "start": "start-storybook -p 6006",
-    "test": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
+    "test": "yarn test:eslint && yarn test:jest",
+    "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
+    "test:jest": "jest",
     "now-build": "build-storybook --output-dir dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danoc/clickable-box.git"
-  },
-  "author": "Daniel O'Connor <daniel@danoc.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danoc/clickable-box/issues"
-  },
-  "homepage": "https://github.com/danoc/clickable-box#readme",
   "dependencies": {
     "@babel/core": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^4.0.6",
     "@storybook/addon-links": "^4.0.6",
     "@storybook/addons": "^4.0.6",
     "@storybook/react": "^4.0.6",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.0.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.4",
+    "jest": "^23.6.0",
     "prettier": "1.15.2",
     "pretty-quick": "^1.8.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-testing-library": "^5.2.3",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
