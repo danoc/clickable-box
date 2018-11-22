@@ -5,23 +5,27 @@ import ClickableBox from "./index";
 afterEach(cleanup);
 
 test("renders into document", () => {
-  const { getByTestId } = render(
-    <ClickableBox data-testid="goose" onClick={() => {}} />
+  const children = "duckduck";
+
+  const { getByText } = render(
+    <ClickableBox onClick={() => {}}>{children}</ClickableBox>
   );
 
-  expect(getByTestId("goose")).toBeTruthy();
+  expect(getByText(children).textContent).toBe(children);
 });
 
-test("renders a `div` by default", () => {
-  const { container } = render(<ClickableBox onClick={() => {}} />);
+describe("element type", () => {
+  test("renders a `div` by default", () => {
+    const { container } = render(<ClickableBox onClick={() => {}} />);
 
-  expect(container.firstChild.tagName).toBe("DIV");
-});
+    expect(container.firstChild.tagName).toBe("DIV");
+  });
 
-test("can be customized to render a `span`", () => {
-  const { container } = render(<ClickableBox is="span" onClick={() => {}} />);
+  test("can be customized to render a `span`", () => {
+    const { container } = render(<ClickableBox is="span" onClick={() => {}} />);
 
-  expect(container.firstChild.tagName).toBe("SPAN");
+    expect(container.firstChild.tagName).toBe("SPAN");
+  });
 });
 
 test("allows pass-through of props", () => {
@@ -32,16 +36,6 @@ test("allows pass-through of props", () => {
   );
 
   expect(getByTestId("goose").getAttribute("title")).toBe(title);
-});
-
-test("properly sets children", () => {
-  const children = "duckduck";
-
-  const { getByText } = render(
-    <ClickableBox onClick={() => {}}>{children}</ClickableBox>
-  );
-
-  expect(getByText(children).textContent).toBe(children);
 });
 
 test("allows `ref` prop", () => {
@@ -55,6 +49,50 @@ test("allows `ref` prop", () => {
   );
 
   expect(ref.current).toBeTruthy();
+});
+
+describe("merges props", () => {
+  test("merges style prop when adding new `style`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox onClick={() => {}} style={{ color: "red" }}>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).style).toMatchObject({
+      // The cursor is built into `ClickableBox`
+      cursor: "pointer",
+      color: "red"
+    });
+  });
+
+  test("allows overwriting of existing `style` value", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox onClick={() => {}} style={{ cursor: "help" }}>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).style).toMatchObject({
+      cursor: "help"
+    });
+  });
+
+  test("allows overwriting of `tabIndex`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox onClick={() => {}} tabIndex={-100}>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("tabIndex")).toBe("-100");
+  });
 });
 
 describe("events", () => {
