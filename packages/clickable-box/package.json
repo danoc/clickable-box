@@ -11,14 +11,17 @@
     "url": "git+https://github.com/danoc/clickable-box.git"
   },
   "peerDependencies": {
+    "prop-types": "^15.0.0",
     "react": "^16.3.0",
-    "react-dom": "^16.0.0",
-    "prop-types": "^15.0.0"
+    "react-dom": "^16.0.0"
   },
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/danoc/clickable-box/issues"
   },
-  "homepage": "https://github.com/danoc/clickable-box#readme"
+  "homepage": "https://github.com/danoc/clickable-box#readme",
+  "dependencies": {
+    "object-assign": "^4.1.1"
+  }
 }

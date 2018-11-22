@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import objectAssign from "object-assign";
 
 class ClickableBox extends React.Component {
   constructor(props) {
@@ -28,12 +29,12 @@ class ClickableBox extends React.Component {
 
     return React.createElement(
       is,
-      Object.assign(
+      objectAssign(
         {},
         {
           tabIndex: 0,
           role: "button",
-          style: Object.assign({}, { cursor: "pointer" }, style),
+          style: objectAssign({}, { cursor: "pointer" }, style),
           onKeyDown: this.onKeyDown,
           ref: innerRef
         },
