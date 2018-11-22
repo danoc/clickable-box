@@ -54,7 +54,7 @@ You can pass any custom prop as well since this component spreads all of the pro
 
 ## What happens behind the scenes?
 
-The component does a few things to make the HTML element behave like a `button`.
+The component does a few things to make the HTML element behave like a `button`:
 
 * Add `tabIndex={0}` to make the element navigable by keyboard.
 * Add `cursor: pointer` to indicate on hover that the element is interactive.
