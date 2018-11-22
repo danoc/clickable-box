@@ -6,6 +6,9 @@
   "scripts": {
     "prepublishOnly": "rollup -c=../../rollup.config.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/danoc/clickable-box.git"
