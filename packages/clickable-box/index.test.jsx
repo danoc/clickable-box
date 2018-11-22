@@ -62,7 +62,7 @@ describe("merges props", () => {
     );
 
     expect(getByText(children).style).toMatchObject({
-      // The cursor is built into `ClickableBox`
+      // The cursor is built into `ClickableBox`.
       cursor: "pointer",
       color: "red"
     });
