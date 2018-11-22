@@ -16,9 +16,6 @@ You can install `ClickableBox` with NPM or Yarn.
 
 ```bash
 npm install clickable-box --save-exact
-```
-
-```bash
 yarn add clickable-box --exact
 ```
 
@@ -51,3 +48,12 @@ There are a few props that are built into `ClickableBox`:
 | `ref`     | `React.Ref`                                     | Provides access to the React element              |
 
 You can pass any custom prop as well since this component spreads all of the props on the rendered element.
+
+## What happens behind the scenes?
+
+The component does a few things to make the HTML element behave like a `button`.
+
+* Add `tabIndex={0}` to make the element navigable by keyboard.
+* Add `cursor: pointer` to indicate on hover that the element is interactive.
+* Add `onKeyDown` event listener that runs `onClick` when `Space` or `Enter` are pressed.
+* Add `role="button"` so that screen readers announce the element as a button.
