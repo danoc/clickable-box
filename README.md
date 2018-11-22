@@ -4,15 +4,11 @@
 
 > React component to add `onClick` to HTML elements without sacrificing accessibility.
 
-## Problem 
+## What is this?
 
-It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements.
+It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements. It's also hard to create clickable `div`s that are accessible. This can cause developers to ship inaccessible UI.
 
-It's also hard to create clickable `div`s that are accessible.
-
-## Solution
-
-The `ClickableBox` component allows you to add `onClick` to HTML elements without sacrificing accessibility.
+The `ClickableBox` React component accepts an `onClick` prop and an element to render. It returns the element with the `onClick` as well as the attributes and event listeners needed to make it as accessible as a `button` element. It combines the flexibility of a `div` or `span` with the accessibility of a `button`.
 
 ## Install
 
