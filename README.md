@@ -1,12 +1,16 @@
 [![Build status](https://badgen.net/travis/danoc/clickable-box)](https://travis-ci.com/danoc/clickable-box) [![Code coverage](https://badgen.net/codecov/c/github/danoc/clickable-box)](https://codecov.io/gh/danoc/clickable-box) [![Bundle size](https://badgen.net/bundlephobia/min/clickable-box?label=size)](https://bundlephobia.com/result?p=clickable-box) [![Bundle size](https://badgen.net/bundlephobia/minzip/clickable-box?label=gzip%20size)](https://bundlephobia.com/result?p=clickable-box)
 
-# `ClickableBox`
+# ClickableBox
 
-**Problem:** It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements.
+## Problem 
+
+It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements.
 
 It's also hard to create clickable `div`s that are accessible.
 
-**Solution:** The `ClickableBox` component allows you to add `onClick` to HTML elements without sacrificing accessibility.
+## Solution
+
+The `ClickableBox` component allows you to add `onClick` to HTML elements without sacrificing accessibility.
 
 ## Install
 
