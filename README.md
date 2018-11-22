@@ -29,6 +29,8 @@ We encourage pinning the version number until `ClickableBox` reaches `1.0.0`. We
 Here's a look at how to use `ClickableBox` to make a clickable SVG.
 
 ```jsx
+// import ClickableBox from 'clickable-box';
+
 <ClickableBox
   is="span" 
   className="icon-container" 
