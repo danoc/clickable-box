@@ -24,6 +24,20 @@ yarn add clickable-box --exact
 
 We encourage pinning the version number until `ClickableBox` reaches `1.0.0`. We may ship breaking changes in `0.x.x` versions.
 
+## Usage
+
+Here's a look at how to use `ClickableBox` to make a clickable SVG.
+
+```jsx
+<ClickableBox
+  is="span" 
+  className="icon-container" 
+  aria-label="Close modal"
+>
+  <CloseIcon />
+</ClickableBox>
+```
+
 ## Props
 
 There are a few props that are built into `ClickableBox`:
