@@ -2,6 +2,8 @@
 
 # ClickableBox
 
+> React component to add `onClick` to HTML elements without sacrificing accessibility.
+
 ## Problem 
 
 It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements.
