@@ -6,6 +6,7 @@
     "test": "yarn test:eslint && yarn test:jest",
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
+    "publish": "lerna publish",
     "now-build": "build-storybook --output-dir dist"
   },
   "dependencies": {
