@@ -24,7 +24,7 @@ class ClickableBox extends React.Component {
   }
 
   render() {
-    const { is, innerRef, ...otherProps } = this.props;
+    const { is, style, innerRef, ...otherProps } = this.props;
 
     return React.createElement(
       is,
@@ -33,7 +33,7 @@ class ClickableBox extends React.Component {
         {
           tabIndex: 0,
           role: "button",
-          style: { cursor: "pointer" },
+          style: Object.assign({}, { cursor: "pointer" }, style),
           onKeyDown: this.onKeyDown,
           ref: innerRef
         },
@@ -46,6 +46,7 @@ class ClickableBox extends React.Component {
 ClickableBox.propTypes = {
   onClick: PropTypes.func.isRequired,
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  style: PropTypes.shape({}),
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
@@ -55,6 +56,7 @@ ClickableBox.propTypes = {
 
 ClickableBox.defaultProps = {
   is: "div",
+  style: undefined,
   innerRef: undefined
 };
 
