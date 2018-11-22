@@ -24,23 +24,38 @@ class ClickableBox extends React.Component {
   }
 
   render() {
-    const { innerRef, ...otherProps } = this.props;
+    const { is, innerRef, ...otherProps } = this.props;
 
-    return (
-      <span
-        tabIndex="0"
-        role="button"
-        style={{ cursor: "pointer" }}
-        onKeyDown={this.onKeyDown}
-        ref={innerRef}
-        {...otherProps}
-      />
+    return React.createElement(
+      is,
+      Object.assign(
+        {},
+        {
+          tabIndex: 0,
+          role: "button",
+          style: { cursor: "pointer" },
+          onKeyDown: this.onKeyDown,
+          ref: innerRef
+        },
+        otherProps
+      )
     );
   }
 }
 
 ClickableBox.propTypes = {
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  innerRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.string,
+    PropTypes.object
+  ])
+};
+
+ClickableBox.defaultProps = {
+  is: "div",
+  innerRef: undefined
 };
 
 export default React.forwardRef((props, ref) => (
