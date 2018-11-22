@@ -16,6 +16,9 @@ You can install `ClickableBox` with NPM or Yarn.
 
 ```bash
 npm install clickable-box --save-exact
+```
+
+```bash
 yarn add clickable-box --exact
 ```
 
