@@ -56,7 +56,7 @@ ClickableBox.propTypes = {
 };
 
 ClickableBox.defaultProps = {
-  is: "div",
+  is: "span",
   style: undefined,
   innerRef: undefined
 };

@@ -31,7 +31,7 @@ Here's a look at how to use `ClickableBox` to make a clickable SVG.
 ```jsx
 // import ClickableBox from 'clickable-box';
 
-<ClickableBox is="span" className="icon-container" aria-label="Close modal">
+<ClickableBox className="icon-container" aria-label="Close modal">
   <CloseIcon />
 </ClickableBox>
 ```
@@ -40,11 +40,11 @@ Here's a look at how to use `ClickableBox` to make a clickable SVG.
 
 There are a few props that are built into `ClickableBox`:
 
-| prop      | type                                            | description                                       |
-| --------- | ----------------------------------------------- | ------------------------------------------------- |
-| `onClick` | `function` \| _required_                        | The action to perform when the element is pressed |
-| `is`      | `string`, `React.Element` \| defaults to: `div` | The element to render                             |
-| `ref`     | `React.Ref`                                     | Provides access to the React element              |
+| prop      | type                                             | description                                       |
+| --------- | ------------------------------------------------ | ------------------------------------------------- |
+| `onClick` | `function` \| _required_                         | The action to perform when the element is pressed |
+| `is`      | `string`, `React.Element` \| defaults to: `span` | The element to render                             |
+| `ref`     | `React.Ref`                                      | Provides access to the React element              |
 
 You can pass any custom prop as well since this component spreads all of the props on the rendered element.
 
