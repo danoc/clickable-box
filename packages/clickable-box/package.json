@@ -1,7 +1,7 @@
 {
   "name": "clickable-box",
   "description": "Add `onClick` to HTML elements without sacrificing accessibility.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "scripts": {
