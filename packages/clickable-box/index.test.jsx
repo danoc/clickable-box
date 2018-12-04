@@ -15,16 +15,16 @@ test("renders into document", () => {
 });
 
 describe("element type", () => {
-  test("renders a `div` by default", () => {
+  test("renders a `span` by default", () => {
     const { container } = render(<ClickableBox onClick={() => {}} />);
 
-    expect(container.firstChild.tagName).toBe("DIV");
+    expect(container.firstChild.tagName).toBe("SPAN");
   });
 
-  test("can be customized to render a `span`", () => {
-    const { container } = render(<ClickableBox is="span" onClick={() => {}} />);
+  test("can be customized to render a `div`", () => {
+    const { container } = render(<ClickableBox is="div" onClick={() => {}} />);
 
-    expect(container.firstChild.tagName).toBe("SPAN");
+    expect(container.firstChild.tagName).toBe("DIV");
   });
 });
 
