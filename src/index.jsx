@@ -6,10 +6,10 @@ class ClickableBox extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
-  onKeyDown(event) {
+  onKeyPress(event) {
     const { onClick } = this.props;
 
     switch (event.key) {
@@ -32,7 +32,7 @@ class ClickableBox extends React.Component {
         tabIndex={0}
         role="button"
         style={objectAssign({}, { cursor: "pointer" }, style)}
-        onKeyDown={this.onKeyDown}
+        onKeyPress={this.onKeyPress}
         ref={innerRef}
         {...otherProps}
       />

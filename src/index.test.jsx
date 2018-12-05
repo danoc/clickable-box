@@ -114,9 +114,9 @@ describe("events", () => {
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
     );
 
-    fireEvent.keyDown(getByText("Submit"), {
+    fireEvent.keyPress(getByText("Submit"), {
       key: "Enter",
-      keyCode: 13,
+      charCode: 13,
       which: 13
     });
 
@@ -130,11 +130,36 @@ describe("events", () => {
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
     );
 
-    fireEvent.keyDown(getByText("Submit"), {
+    fireEvent.keyPress(getByText("Submit"), {
       key: "Space",
-      keyCode: 32,
+      charCode: 32,
       which: 32
     });
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  test("fires events on `keypress`, not `keydown`", () => {
+    // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
+    const handleClick = jest.fn();
+
+    const validKey = {
+      key: "Enter",
+      charCode: 13,
+      which: 13
+    };
+
+    const { getByText } = render(
+      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+    );
+
+    const button = getByText("Submit");
+
+    fireEvent.keyDown(button, validKey);
+
+    expect(handleClick).toHaveBeenCalledTimes(0);
+
+    fireEvent.keyPress(button, validKey);
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -146,9 +171,9 @@ describe("events", () => {
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
     );
 
-    fireEvent.keyDown(getByText("Submit"), {
+    fireEvent.keyPress(getByText("Submit"), {
       key: ".",
-      keyCode: 91,
+      charCode: 91,
       which: 91
     });
 
