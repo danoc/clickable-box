@@ -13,12 +13,12 @@ const dependencies = Object.keys(pkg.dependencies || {});
 const peerDependencies = Object.keys(pkg.peerDependencies || {});
 const external = dependencies.concat(peerDependencies);
 
-const INPUT_FILE = path.join(PACKAGE_ROOT_PATH, "index.jsx");
+const INPUT_FILE = path.join(PACKAGE_ROOT_PATH, "src/index.jsx");
 const OUTPUT_DIR = path.join(PACKAGE_ROOT_PATH, "dist");
 
 const shared = {
   input: INPUT_FILE,
-  plugins: [babel({ configFile: "../../babel.config.js" })],
+  plugins: [babel()],
   external
 };
 
