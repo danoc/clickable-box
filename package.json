@@ -1,7 +1,7 @@
 {
   "name": "clickable-box",
   "description": "Add `onClick` to HTML elements without sacrificing accessibility.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
   "main": "dist/index.cjs.js",
@@ -12,6 +12,7 @@
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
     "prepublishOnly": "rollup -c=./rollup.config.js",
+    "release": "yarn publish && git push --follow-tags",
     "now-build": "build-storybook --output-dir .storybook/dist"
   },
   "dependencies": {
