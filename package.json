@@ -2,6 +2,8 @@
   "name": "clickable-box",
   "description": "Add `onClick` to HTML elements without sacrificing accessibility.",
   "version": "0.0.9",
+  "author": "Daniel O'Connor <daniel@danoc.me>",
+  "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "scripts": {
@@ -10,26 +12,8 @@
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
     "prepublishOnly": "rollup -c=./rollup.config.js",
-    "now-build": "build-storybook --output-dir dist"
+    "now-build": "build-storybook --output-dir .storybook/dist"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danoc/clickable-box.git"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.0.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.0.0"
-  },
-  "author": "Daniel O'Connor <daniel@danoc.me>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danoc/clickable-box/issues"
-  },
-  "homepage": "https://github.com/danoc/clickable-box#readme",
   "dependencies": {
     "object-assign": "^4.1.1"
   },
@@ -62,6 +46,22 @@
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3"
   },
+  "peerDependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danoc/clickable-box.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danoc/clickable-box/issues"
+  },
+  "homepage": "https://github.com/danoc/clickable-box#readme",
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"

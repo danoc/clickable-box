@@ -25,21 +25,17 @@ class ClickableBox extends React.Component {
   }
 
   render() {
-    const { is, style, innerRef, ...otherProps } = this.props;
+    const { is: Component, style, innerRef, ...otherProps } = this.props;
 
-    return React.createElement(
-      is,
-      objectAssign(
-        {},
-        {
-          tabIndex: 0,
-          role: "button",
-          style: objectAssign({}, { cursor: "pointer" }, style),
-          onKeyDown: this.onKeyDown,
-          ref: innerRef
-        },
-        otherProps
-      )
+    return (
+      <Component
+        tabIndex={0}
+        role="button"
+        style={objectAssign({}, { cursor: "pointer" }, style)}
+        onKeyDown={this.onKeyDown}
+        ref={innerRef}
+        {...otherProps}
+      />
     );
   }
 }
