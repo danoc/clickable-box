@@ -26,14 +26,37 @@ We encourage pinning the version number until `ClickableBox` reaches `1.0.0`. We
 
 ## Usage
 
-Here's a look at how to use `ClickableBox` to make a clickable SVG.
+Here's how to use `ClickableBox` to make a clickable SVG:
 
 ```jsx
 // import ClickableBox from 'clickable-box';
 
-<ClickableBox className="icon-container" aria-label="Close modal">
+<ClickableBox onClick={this.closeModal} aria-label="Close modal" className="icon-button">
   <CloseIcon />
 </ClickableBox>
+```
+
+`ClickableBox` will render a `span` that looks like this:
+
+```js
+<span
+  // Make the element clickable
+  onClick={this.closeModal}
+  // Make the element navigable by keyboard
+  tabIndex={0}
+  // Call `this.closeModal` if the user presses either the
+  // enter or space key while the element is in focus
+  onKeyDown={...}
+  // Tell screen readers that the element is a button
+  role="button"
+  // Indicate on hover that the element is clickable
+  style={{ cursor: 'pointer' }}
+  // All other props are passed through to the element
+  aria-label="Close modal" 
+  className="icon-button"
+>
+  <CloseIcon />
+</span>
 ```
 
 ## Props
@@ -46,13 +69,14 @@ There are a few props that are built into `ClickableBox`:
 | `is`      | `string`, `React.Element` \| defaults to: `span` | The element to render                             |
 | `ref`     | `React.Ref`                                      | Provides access to the React element              |
 
-You can pass any custom prop as well since this component spreads all of the props on the rendered element.
+You can pass any custom prop as well. This component will forward those props to the rendered element.
 
-## What happens behind the scenes?
+## When should you use this?
+* You're building a button that looks like plain text.
+* You're building a button that has content spanning multiple columns or rows.
 
-The component does a few things to make the HTML element behave like a `button`:
 
-- Add `tabIndex={0}` to make the element navigable by keyboard.
-- Add `cursor: pointer` to indicate on hover that the element is interactive.
-- Add `onKeyDown` event listener that runs `onClick` when `Space` or `Enter` are pressed.
-- Add `role="button"` so that screen readers announce the element as a button.
+## When shouldn't you use this?
+
+* You're linking to another page: Use an `a` tag with an `href` instead. This, beyond being semantically correct, allows users to preview the URL, open it in a new tab, and copy the link to their clipboard.
+* You're building a button that [looks like a button](https://getbootstrap.com/docs/4.0/components/buttons/#examples): This is fairly easy to build as a `button` element with CSS.
