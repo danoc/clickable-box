@@ -7,10 +7,12 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "scripts": {
-    "test": "yarn test:eslint && yarn test:jest",
+    "test": "yarn test:eslint && yarn test:jest && yarn test:prettier",
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
+    "test:prettier": "prettier \"**/*.{js,jsx,css,scss,json,md,mdx,html}\" --list-different",
     "prepublishOnly": "rollup -c=./rollup.config.js",
+    "format": "prettier \"**/*.{js,jsx,css,scss,json,md,mdx,html}\" --write",
     "release": "git checkout master && git pull && yarn test && yarn publish && git push --follow-tags"
   },
   "dependencies": {
