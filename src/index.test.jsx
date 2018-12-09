@@ -16,13 +16,13 @@ test("renders into document", () => {
 
 describe("element type", () => {
   test("renders a `span` by default", () => {
-    const { container } = render(<ClickableBox onClick={() => {}} />);
+    const { container } = render(<ClickableBox />);
 
     expect(container.firstChild.tagName).toBe("SPAN");
   });
 
   test("can be customized to render a `div`", () => {
-    const { container } = render(<ClickableBox is="div" onClick={() => {}} />);
+    const { container } = render(<ClickableBox is="div" />);
 
     expect(container.firstChild.tagName).toBe("DIV");
   });
@@ -32,7 +32,7 @@ test("allows pass-through of props", () => {
   const title = "duckduck";
 
   const { getByTestId } = render(
-    <ClickableBox data-testid="goose" onClick={() => {}} title={title} />
+    <ClickableBox data-testid="goose" title={title} />
   );
 
   expect(getByTestId("goose").getAttribute("title")).toBe(title);
@@ -56,7 +56,7 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox onClick={() => {}} style={{ color: "red" }}>
+      <ClickableBox style={{ color: "red" }} onClick={() => {}}>
         {children}
       </ClickableBox>
     );
@@ -72,7 +72,7 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox onClick={() => {}} style={{ cursor: "help" }}>
+      <ClickableBox style={{ cursor: "help" }} onClick={() => {}}>
         {children}
       </ClickableBox>
     );
@@ -86,7 +86,7 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox onClick={() => {}} tabIndex={-100}>
+      <ClickableBox tabIndex={-100} onClick={() => {}}>
         {children}
       </ClickableBox>
     );
@@ -178,5 +178,109 @@ describe("events", () => {
     });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe("disabled", () => {
+  test("does not add `tabIndex`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox disabled>{children}</ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("tabIndex")).toBe(null);
+  });
+
+  test("does not fire event when space is pressed", () => {
+    const handleClick = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={handleClick} disabled>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), {
+      key: "Space",
+      charCode: 32,
+      which: 32
+    });
+
+    expect(handleClick).toHaveBeenCalledTimes(0);
+  });
+
+  test("does not fire event when clicked on", () => {
+    const handleClick = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={handleClick} disabled>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.click(getByText("Submit"));
+    expect(handleClick).toHaveBeenCalledTimes(0);
+  });
+
+  test("does not add `cursor: pointer`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox style={{ color: "red" }} disabled>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).style).toMatchObject({
+      color: "red"
+    });
+  });
+
+  test("does not forward the disabled attribute", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox disabled>{children}</ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("disabled")).toBeNull();
+  });
+});
+
+describe("`onClick` prop is not provided", () => {
+  test("does not add `tabIndex`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
+
+    expect(getByText(children).getAttribute("tabIndex")).toBe(null);
+  });
+
+  test("does not error when space is pressed", () => {
+    const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
+
+    fireEvent.keyPress(getByText("Submit"), {
+      key: "Space",
+      charCode: 32,
+      which: 32
+    });
+  });
+
+  test("does not error event when clicked on", () => {
+    const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
+    fireEvent.click(getByText("Submit"));
+  });
+
+  test("does not add `cursor: pointer`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox style={{ color: "red" }}>{children}</ClickableBox>
+    );
+
+    expect(getByText(children).style).toMatchObject({
+      color: "red"
+    });
   });
 });

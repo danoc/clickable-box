@@ -25,14 +25,28 @@ class ClickableBox extends React.Component {
   }
 
   render() {
-    const { is: Component, style, innerRef, ...otherProps } = this.props;
+    const {
+      is: Component,
+      style,
+      innerRef,
+      onClick,
+      disabled,
+      ...otherProps
+    } = this.props;
+
+    const isActiveButton = !disabled && onClick;
 
     return (
       <Component
-        tabIndex={0}
-        role="button"
-        style={objectAssign({}, { cursor: "pointer" }, style)}
-        onKeyPress={this.onKeyPress}
+        tabIndex={isActiveButton ? 0 : undefined}
+        role={isActiveButton ? "button" : undefined}
+        style={
+          isActiveButton
+            ? objectAssign({}, { cursor: "pointer" }, style)
+            : style
+        }
+        onKeyPress={isActiveButton ? this.onKeyPress : undefined}
+        onClick={isActiveButton ? onClick : undefined}
         ref={innerRef}
         {...otherProps}
       />
@@ -41,9 +55,10 @@ class ClickableBox extends React.Component {
 }
 
 ClickableBox.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   style: PropTypes.shape({}),
+  disabled: PropTypes.bool,
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
@@ -52,8 +67,10 @@ ClickableBox.propTypes = {
 };
 
 ClickableBox.defaultProps = {
+  onClick: undefined,
   is: "span",
   style: undefined,
+  disabled: false,
   innerRef: undefined
 };
 

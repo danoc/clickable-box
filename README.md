@@ -31,7 +31,11 @@ Here's how to use `ClickableBox` to make a clickable SVG:
 ```jsx
 // import ClickableBox from 'clickable-box';
 
-<ClickableBox onClick={this.closeModal} aria-label="Close modal" className="icon-button">
+<ClickableBox
+  onClick={this.closeModal}
+  aria-label="Close modal"
+  className="icon-button"
+>
   <CloseIcon />
 </ClickableBox>
 ```
@@ -52,7 +56,7 @@ Here's how to use `ClickableBox` to make a clickable SVG:
   // Indicate on hover that the element is clickable
   style={{ cursor: 'pointer' }}
   // All other props are passed through to the element
-  aria-label="Close modal" 
+  aria-label="Close modal"
   className="icon-button"
 >
   <CloseIcon />
@@ -65,21 +69,22 @@ The resulting HTML is accessible for users navigating by screen readers, keyboar
 
 There are a few props that are built into `ClickableBox`:
 
-| prop      | type                                             | description                                       |
-| --------- | ------------------------------------------------ | ------------------------------------------------- |
-| `onClick` | `function` \| _required_                         | The action to perform when the element is pressed |
-| `is`      | `string`, `React.Element` \| defaults to: `span` | The element to render                             |
-| `ref`     | `React.Ref`                                      | Provides access to the React element              |
+| prop       | type                                             | description                                                  |
+| ---------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| `onClick`  | `function`                                       | The action to perform when the element is pressed            |
+| `is`       | `string`, `React.Element` \| defaults to: `span` | The element to render                                        |
+| `disabled` | `boolean` \| defaults to: `false`                | Makes element non-interactive, even if `onClick` is provided |
+| `ref`      | `React.Ref`                                      | Provides access to the React element                         |
 
 You can pass any custom prop as well. This component will forward those props to the rendered element.
 
 ## When should you use this?
 
-* You're building a button that looks like plain text.
-* You're building a button that has content spanning multiple columns or rows.
-* You're making a clickable SVG icon.
+- You're building a button that looks like plain text.
+- You're building a button that has content spanning multiple columns or rows.
+- You're making a clickable SVG icon.
 
 ## When shouldn't you use this?
 
-* You're linking to another page: Use an `a` tag with an `href` instead. The anchor tag is semantically correct, allows users to preview the URL, open it in a new tab, and copy the link to their clipboard.
-* You're building a button that [looks like a button](https://getbootstrap.com/docs/4.0/components/buttons/#examples): This is fairly easy to build as a `button` element with CSS.
+- You're linking to another page: Use an `a` tag with an `href` instead. The anchor tag is semantically correct, allows users to preview the URL, open it in a new tab, and copy the link to their clipboard.
+- You're building a button that [looks like a button](https://getbootstrap.com/docs/4.0/components/buttons/#examples): This is fairly easy to build as a `button` element with CSS.
