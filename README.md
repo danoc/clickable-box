@@ -40,7 +40,7 @@ Here's how to use `ClickableBox` to make a clickable SVG:
 </ClickableBox>
 ```
 
-`ClickableBox` will render a `span` that looks like this:
+`ClickableBox` will return a `span` that looks like this:
 
 ```js
 <span
