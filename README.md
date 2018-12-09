@@ -1,4 +1,4 @@
-# ClickableBox
+# 📦 ClickableBox
 
 [![NPM version](https://badgen.net/npm/v/clickable-box)](https://www.npmjs.com/package/clickable-box) [![Build status](https://badgen.net/travis/danoc/clickable-box)](https://travis-ci.com/danoc/clickable-box) [![Code coverage](https://badgen.net/codecov/c/github/danoc/clickable-box)](https://codecov.io/gh/danoc/clickable-box) [![Bundle size](https://badgen.net/bundlephobia/min/clickable-box?label=size)](https://bundlephobia.com/result?p=clickable-box) [![Bundle size](https://badgen.net/bundlephobia/minzip/clickable-box?label=gzip%20size)](https://bundlephobia.com/result?p=clickable-box)
 
@@ -59,6 +59,8 @@ Here's how to use `ClickableBox` to make a clickable SVG:
 </span>
 ```
 
+The resulting HTML is accessible for users navigating by screen readers, keyboard, and mouse/touch.
+
 ## Props
 
 There are a few props that are built into `ClickableBox`:
@@ -72,11 +74,12 @@ There are a few props that are built into `ClickableBox`:
 You can pass any custom prop as well. This component will forward those props to the rendered element.
 
 ## When should you use this?
+
 * You're building a button that looks like plain text.
 * You're building a button that has content spanning multiple columns or rows.
-
+* You're making a clickable SVG icon.
 
 ## When shouldn't you use this?
 
-* You're linking to another page: Use an `a` tag with an `href` instead. This, beyond being semantically correct, allows users to preview the URL, open it in a new tab, and copy the link to their clipboard.
+* You're linking to another page: Use an `a` tag with an `href` instead. The anchor tag is semantically correct, allows users to preview the URL, open it in a new tab, and copy the link to their clipboard.
 * You're building a button that [looks like a button](https://getbootstrap.com/docs/4.0/components/buttons/#examples): This is fairly easy to build as a `button` element with CSS.
