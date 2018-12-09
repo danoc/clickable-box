@@ -7,13 +7,11 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "scripts": {
-    "start": "start-storybook -p 6006",
     "test": "yarn test:eslint && yarn test:jest",
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
     "prepublishOnly": "rollup -c=./rollup.config.js",
-    "release": "yarn publish && git push --follow-tags",
-    "now-build": "build-storybook --output-dir .storybook/dist"
+    "release": "yarn publish && git push --follow-tags"
   },
   "dependencies": {
     "object-assign": "^4.1.1"
@@ -21,10 +19,6 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^4.0.6",
-    "@storybook/addon-links": "^4.0.6",
-    "@storybook/addons": "^4.0.6",
-    "@storybook/react": "^4.0.6",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
