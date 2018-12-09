@@ -11,7 +11,7 @@
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
     "prepublishOnly": "rollup -c=./rollup.config.js",
-    "release": "yarn publish && git push --follow-tags"
+    "release": "git checkout master && git pull && yarn test && yarn publish && git push --follow-tags"
   },
   "dependencies": {
     "object-assign": "^4.1.1"
