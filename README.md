@@ -71,7 +71,7 @@ There are a few props that are built into `ClickableBox`:
 
 | prop       | type                                             | description                                                  |
 | ---------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| `onClick`  | `function`                                       | The action to perform when the element is pressed            |
+| `onClick`  | `function` \| defaults to: `undefined`           | The action to perform when the element is pressed            |
 | `is`       | `string`, `React.Element` \| defaults to: `span` | The element to render                                        |
 | `disabled` | `boolean` \| defaults to: `false`                | Makes element non-interactive, even if `onClick` is provided |
 | `ref`      | `React.Ref`                                      | Provides access to the React element                         |
