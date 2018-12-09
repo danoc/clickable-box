@@ -62,6 +62,11 @@
   "bugs": {
     "url": "https://github.com/danoc/clickable-box/issues"
   },
+  "keywords": [
+    "accessibility",
+    "react",
+    "component"
+  ],
   "homepage": "https://github.com/danoc/clickable-box#readme",
   "husky": {
     "hooks": {
