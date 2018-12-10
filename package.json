@@ -1,7 +1,7 @@
 {
-  "name": "unbutton",
+  "name": "clickable-box",
   "description": "Add `onClick` to HTML elements without sacrificing accessibility.",
-  "version": "0.1.0",
+  "version": "0.0.14",
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
   "main": "dist/index.cjs.js",
@@ -54,17 +54,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danoc/unbutton.git"
+    "url": "git+https://github.com/danoc/clickable-box.git"
   },
   "bugs": {
-    "url": "https://github.com/danoc/unbutton/issues"
+    "url": "https://github.com/danoc/clickable-box/issues"
   },
   "keywords": [
     "accessibility",
     "react",
     "component"
   ],
-  "homepage": "https://github.com/danoc/unbutton#readme",
+  "homepage": "https://github.com/danoc/clickable-box#readme",
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"

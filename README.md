@@ -1,46 +1,46 @@
-# 🖱 Unbutton
+# 📦 ClickableBox
 
-[![NPM version](https://badgen.net/npm/v/unbutton)](https://www.npmjs.com/package/unbutton) [![Build status](https://badgen.net/travis/danoc/unbutton)](https://travis-ci.com/danoc/unbutton) [![Code coverage](https://badgen.net/codecov/c/github/danoc/unbutton)](https://codecov.io/gh/danoc/unbutton) [![Bundle size](https://badgen.net/bundlephobia/min/unbutton?label=size)](https://bundlephobia.com/result?p=unbutton) [![Bundle size](https://badgen.net/bundlephobia/minzip/unbutton?label=gzip%20size)](https://bundlephobia.com/result?p=unbutton)
+[![NPM version](https://badgen.net/npm/v/clickable-box)](https://www.npmjs.com/package/clickable-box) [![Build status](https://badgen.net/travis/danoc/clickable-box)](https://travis-ci.com/danoc/clickable-box) [![Code coverage](https://badgen.net/codecov/c/github/danoc/clickable-box)](https://codecov.io/gh/danoc/clickable-box) [![Bundle size](https://badgen.net/bundlephobia/min/clickable-box?label=size)](https://bundlephobia.com/result?p=clickable-box) [![Bundle size](https://badgen.net/bundlephobia/minzip/clickable-box?label=gzip%20size)](https://bundlephobia.com/result?p=clickable-box)
 
 > React component to add `onClick` to HTML elements without sacrificing accessibility.
 
 ## What is this?
 
-It's [very hard](https://www.scottohara.me/blog/2018/10/03/unbutton-buttons.html) to remove all styles from HTML `button` elements. It's also hard to create clickable `div`s that are accessible. This can cause developers to ship inaccessible UI.
+It's [very hard](https://www.scottohara.me/blog/2018/10/03/clickable-box-buttons.html) to remove all styles from HTML `button` elements. It's also hard to create clickable `div`s that are accessible. This can cause developers to ship inaccessible UI.
 
-The `Unbutton` React component accepts an `onClick` prop and an element to render. It returns the element with the `onClick` as well as the attributes and event listeners needed to make it as accessible as a `button`.
+The `ClickableBox` React component accepts an `onClick` prop and an element to render. It returns the element with the `onClick` as well as the attributes and event listeners needed to make it as accessible as a `button`.
 
 ## Install
 
-You can install `Unbutton` with NPM or Yarn.
+You can install `ClickableBox` with NPM or Yarn.
 
 ```bash
-npm install unbutton --save-exact
+npm install clickable-box --save-exact
 ```
 
 ```bash
-yarn add unbutton --exact
+yarn add clickable-box --exact
 ```
 
-We encourage pinning the version number until `Unbutton` reaches `1.0.0`. We may ship breaking changes in `0.x.x` versions.
+We encourage pinning the version number until `ClickableBox` reaches `1.0.0`. We may ship breaking changes in `0.x.x` versions.
 
 ## Usage
 
-Here's how to use `Unbutton` to make a clickable SVG:
+Here's how to use `ClickableBox` to make a clickable SVG:
 
 ```jsx
-// import Unbutton from 'unbutton';
+// import ClickableBox from 'clickable-box';
 
-<Unbutton
+<ClickableBox
   onClick={this.closeModal}
   aria-label="Close modal"
   className="icon-button"
 >
   <CloseIcon />
-</Unbutton>
+</ClickableBox>
 ```
 
-`Unbutton` will return a `span` that looks like this:
+`ClickableBox` will return a `span` that looks like this:
 
 ```js
 <span
@@ -67,7 +67,7 @@ The resulting HTML is accessible for users navigating by screen readers, keyboar
 
 ## Props
 
-There are a few props that are built into `Unbutton`:
+There are a few props that are built into `ClickableBox`:
 
 | prop       | type                                             | description                                                  |
 | ---------- | ------------------------------------------------ | ------------------------------------------------------------ |
