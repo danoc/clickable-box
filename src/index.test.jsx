@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, render, fireEvent } from "react-testing-library";
-import ClickableBox from "./index";
+import Unbutton from "./index";
 
 afterEach(cleanup);
 
@@ -8,7 +8,7 @@ test("renders into document", () => {
   const children = "duckduck";
 
   const { getByText } = render(
-    <ClickableBox onClick={() => {}}>{children}</ClickableBox>
+    <Unbutton onClick={() => {}}>{children}</Unbutton>
   );
 
   expect(getByText(children).textContent).toBe(children);
@@ -16,13 +16,13 @@ test("renders into document", () => {
 
 describe("element type", () => {
   test("renders a `span` by default", () => {
-    const { container } = render(<ClickableBox />);
+    const { container } = render(<Unbutton />);
 
     expect(container.firstChild.tagName).toBe("SPAN");
   });
 
   test("can be customized to render a `div`", () => {
-    const { container } = render(<ClickableBox is="div" />);
+    const { container } = render(<Unbutton is="div" />);
 
     expect(container.firstChild.tagName).toBe("DIV");
   });
@@ -32,7 +32,7 @@ test("allows pass-through of props", () => {
   const title = "duckduck";
 
   const { getByTestId } = render(
-    <ClickableBox data-testid="goose" title={title} />
+    <Unbutton data-testid="goose" title={title} />
   );
 
   expect(getByTestId("goose").getAttribute("title")).toBe(title);
@@ -43,9 +43,9 @@ test("allows `ref` prop", () => {
   const ref = React.createRef();
 
   render(
-    <ClickableBox ref={ref} onClick={() => {}}>
+    <Unbutton ref={ref} onClick={() => {}}>
       {children}
-    </ClickableBox>
+    </Unbutton>
   );
 
   expect(ref.current).toBeTruthy();
@@ -56,13 +56,13 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox style={{ color: "red" }} onClick={() => {}}>
+      <Unbutton style={{ color: "red" }} onClick={() => {}}>
         {children}
-      </ClickableBox>
+      </Unbutton>
     );
 
     expect(getByText(children).style).toMatchObject({
-      // The cursor is built into `ClickableBox`.
+      // The cursor is built into `Unbutton`.
       cursor: "pointer",
       color: "red"
     });
@@ -72,9 +72,9 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox style={{ cursor: "help" }} onClick={() => {}}>
+      <Unbutton style={{ cursor: "help" }} onClick={() => {}}>
         {children}
-      </ClickableBox>
+      </Unbutton>
     );
 
     expect(getByText(children).style).toMatchObject({
@@ -86,9 +86,9 @@ describe("merges props", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox tabIndex={-100} onClick={() => {}}>
+      <Unbutton tabIndex={-100} onClick={() => {}}>
         {children}
-      </ClickableBox>
+      </Unbutton>
     );
 
     expect(getByText(children).getAttribute("tabIndex")).toBe("-100");
@@ -100,7 +100,7 @@ describe("events", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <Unbutton onClick={handleClick}>Submit</Unbutton>
     );
 
     fireEvent.click(getByText("Submit"));
@@ -111,7 +111,7 @@ describe("events", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <Unbutton onClick={handleClick}>Submit</Unbutton>
     );
 
     fireEvent.keyPress(getByText("Submit"), {
@@ -127,7 +127,7 @@ describe("events", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <Unbutton onClick={handleClick}>Submit</Unbutton>
     );
 
     fireEvent.keyPress(getByText("Submit"), {
@@ -150,7 +150,7 @@ describe("events", () => {
     };
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <Unbutton onClick={handleClick}>Submit</Unbutton>
     );
 
     const button = getByText("Submit");
@@ -168,7 +168,7 @@ describe("events", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <Unbutton onClick={handleClick}>Submit</Unbutton>
     );
 
     fireEvent.keyPress(getByText("Submit"), {
@@ -185,9 +185,7 @@ describe("disabled", () => {
   test("does not add `tabIndex`", () => {
     const children = "duckduck";
 
-    const { getByText } = render(
-      <ClickableBox disabled>{children}</ClickableBox>
-    );
+    const { getByText } = render(<Unbutton disabled>{children}</Unbutton>);
 
     expect(getByText(children).getAttribute("tabIndex")).toBe(null);
   });
@@ -196,9 +194,9 @@ describe("disabled", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick} disabled>
+      <Unbutton onClick={handleClick} disabled>
         Submit
-      </ClickableBox>
+      </Unbutton>
     );
 
     fireEvent.keyPress(getByText("Submit"), {
@@ -214,9 +212,9 @@ describe("disabled", () => {
     const handleClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick} disabled>
+      <Unbutton onClick={handleClick} disabled>
         Submit
-      </ClickableBox>
+      </Unbutton>
     );
 
     fireEvent.click(getByText("Submit"));
@@ -227,9 +225,9 @@ describe("disabled", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox style={{ color: "red" }} disabled>
+      <Unbutton style={{ color: "red" }} disabled>
         {children}
-      </ClickableBox>
+      </Unbutton>
     );
 
     expect(getByText(children).style).toMatchObject({
@@ -240,9 +238,7 @@ describe("disabled", () => {
   test("does not forward the disabled attribute", () => {
     const children = "duckduck";
 
-    const { getByText } = render(
-      <ClickableBox disabled>{children}</ClickableBox>
-    );
+    const { getByText } = render(<Unbutton disabled>{children}</Unbutton>);
 
     expect(getByText(children).getAttribute("disabled")).toBeNull();
   });
@@ -252,13 +248,13 @@ describe("`onClick` prop is not provided", () => {
   test("does not add `tabIndex`", () => {
     const children = "duckduck";
 
-    const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
+    const { getByText } = render(<Unbutton>{children}</Unbutton>);
 
     expect(getByText(children).getAttribute("tabIndex")).toBe(null);
   });
 
   test("does not error when space is pressed", () => {
-    const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
+    const { getByText } = render(<Unbutton>Submit</Unbutton>);
 
     fireEvent.keyPress(getByText("Submit"), {
       key: "Space",
@@ -268,7 +264,7 @@ describe("`onClick` prop is not provided", () => {
   });
 
   test("does not error event when clicked on", () => {
-    const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
+    const { getByText } = render(<Unbutton>Submit</Unbutton>);
     fireEvent.click(getByText("Submit"));
   });
 
@@ -276,7 +272,7 @@ describe("`onClick` prop is not provided", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox style={{ color: "red" }}>{children}</ClickableBox>
+      <Unbutton style={{ color: "red" }}>{children}</Unbutton>
     );
 
     expect(getByText(children).style).toMatchObject({

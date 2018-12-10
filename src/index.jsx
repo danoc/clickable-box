@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import objectAssign from "object-assign";
 
-class ClickableBox extends React.Component {
+class Unbutton extends React.Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +54,7 @@ class ClickableBox extends React.Component {
   }
 }
 
-ClickableBox.propTypes = {
+Unbutton.propTypes = {
   onClick: PropTypes.func,
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   style: PropTypes.shape({}),
@@ -66,7 +66,7 @@ ClickableBox.propTypes = {
   ])
 };
 
-ClickableBox.defaultProps = {
+Unbutton.defaultProps = {
   onClick: undefined,
   is: "span",
   style: undefined,
@@ -75,5 +75,5 @@ ClickableBox.defaultProps = {
 };
 
 export default React.forwardRef((props, ref) => (
-  <ClickableBox innerRef={ref} {...props} />
+  <Unbutton innerRef={ref} {...props} />
 ));
