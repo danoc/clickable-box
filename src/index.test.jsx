@@ -4,6 +4,12 @@ import ClickableBox from "./index";
 
 afterEach(cleanup);
 
+const validEnterPress = {
+  key: "Enter",
+  charCode: 13,
+  which: 13
+};
+
 test("renders into document", () => {
   const children = "duckduck";
 
@@ -114,11 +120,7 @@ describe("events", () => {
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
     );
 
-    fireEvent.keyPress(getByText("Submit"), {
-      key: "Enter",
-      charCode: 13,
-      which: 13
-    });
+    fireEvent.keyPress(getByText("Submit"), validEnterPress);
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -139,15 +141,27 @@ describe("events", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
+  test("runs a passed in `onKeyPress` as well as `onClick` if a valid key is pressed", () => {
+    const handleClick = jest.fn();
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={handleClick} onKeyPress={onKeyPress}>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(onKeyPress).toHaveBeenCalledTimes(1);
+  });
+
   test("fires events on `keypress`, not `keydown`", () => {
     // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
     const handleClick = jest.fn();
 
-    const validKey = {
-      key: "Enter",
-      charCode: 13,
-      which: 13
-    };
+    const validKey = validEnterPress;
 
     const { getByText } = render(
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
@@ -246,6 +260,20 @@ describe("disabled", () => {
 
     expect(getByText(children).getAttribute("disabled")).toBeNull();
   });
+
+  test("does not run passed in `onKeyPress`", () => {
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={() => {}} onKeyPress={onKeyPress} disabled>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+
+    expect(onKeyPress).toHaveBeenCalledTimes(0);
+  });
 });
 
 describe("`onClick` prop is not provided", () => {
@@ -282,5 +310,17 @@ describe("`onClick` prop is not provided", () => {
     expect(getByText(children).style).toMatchObject({
       color: "red"
     });
+  });
+
+  test("does not run passed in `onKeyPress`", () => {
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onKeyPress={onKeyPress}>Submit</ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+
+    expect(onKeyPress).toHaveBeenCalledTimes(0);
   });
 });

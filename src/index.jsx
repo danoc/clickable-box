@@ -10,14 +10,19 @@ class ClickableBox extends React.Component {
   }
 
   onKeyPress(event) {
-    const { onClick } = this.props;
+    const { onClick, onKeyPress } = this.props;
+
+    // Run user supplied `onKeyPress` first if there is one
+    if (typeof onKeyPress === "function") {
+      onKeyPress(event);
+    }
 
     switch (event.key) {
       case "Space":
-        onClick();
+        onClick(event);
         break;
       case "Enter":
-        onClick();
+        onClick(event);
         break;
       default:
         break;
@@ -31,6 +36,10 @@ class ClickableBox extends React.Component {
       innerRef,
       onClick,
       disabled,
+      // Prevent `onKeyPress` from being spread since we will call it in
+      // `this.onKeyPress` and we don't want the user function to overwrite our
+      // behavior.
+      onKeyPress,
       ...otherProps
     } = this.props;
 
@@ -59,6 +68,7 @@ ClickableBox.propTypes = {
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   style: PropTypes.shape({}),
   disabled: PropTypes.bool,
+  onKeyPress: PropTypes.func,
   innerRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.string,
@@ -71,6 +81,7 @@ ClickableBox.defaultProps = {
   is: "span",
   style: undefined,
   disabled: false,
+  onKeyPress: undefined,
   innerRef: undefined
 };
 
