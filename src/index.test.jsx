@@ -157,6 +157,29 @@ describe("events", () => {
     expect(onKeyPress).toHaveBeenCalledTimes(1);
   });
 
+  test("does not run `onClick` if a valid key is pressed, the consumer passes in their on `onKeyPress`, and the consumer's `onKeyPress` prevents the event", () => {
+    const handleClick = jest.fn();
+    const onKeyPressMock = jest.fn();
+
+    const onKeyPress = event => {
+      onKeyPressMock();
+
+      // This should prevent `onClick` from running.
+      event.preventDefault();
+    };
+
+    const { getByText } = render(
+      <ClickableBox onClick={handleClick} onKeyPress={onKeyPress}>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+
+    expect(handleClick).toHaveBeenCalledTimes(0);
+    expect(onKeyPressMock).toHaveBeenCalledTimes(1);
+  });
+
   test("fires events on `keypress`, not `keydown`", () => {
     // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
     const handleClick = jest.fn();
