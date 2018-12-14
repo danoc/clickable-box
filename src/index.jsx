@@ -15,6 +15,12 @@ class ClickableBox extends React.Component {
     // Run user supplied `onKeyPress` first if there is one
     if (typeof onKeyPress === "function") {
       onKeyPress(event);
+
+      // Prevent `onClick` from running in the rare case that the user has a custom `onKeyPress`
+      // that contains `event.preventDefault()`.
+      if (event.isDefaultPrevented()) {
+        return;
+      }
     }
 
     switch (event.key) {
