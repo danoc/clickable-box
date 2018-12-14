@@ -53,8 +53,6 @@ Here's how to use `ClickableBox` to make a clickable SVG:
   onKeyDown={...}
   // Tell screen readers that the element is a button
   role="button"
-  // Indicate on hover that the element is clickable
-  style={{ cursor: 'pointer' }}
   // All other props are passed through to the element
   aria-label="Close modal"
   className="icon-button"
@@ -90,3 +88,16 @@ You can pass any custom prop as well. This component will forward those props to
 - You're using this as a submit button in a form. (It's possible, but [there's a quirk](https://github.com/danoc/clickable-box/issues/4).)
 - You're building a button that [looks like a button](https://getbootstrap.com/docs/4.0/components/buttons/#examples): This is fairly easy to build as a `button` element with CSS.
 - You think it'd be easier to simply style a `button`: This is a good sign that you should use a `button` element instead.
+
+## FAQs
+
+**How can I style this with `cursor: pointer`?**
+
+`ClickableBox` accepts all props including `className` and `style` prop. If you prefer, you can add the cursor style globally with this CSS:
+
+```css
+/* Targets all instances of `ClickableBox` */
+[role="button"] {
+  cursor: pointer;
+}
+```
