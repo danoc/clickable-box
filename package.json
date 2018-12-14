@@ -15,9 +15,6 @@
     "format": "prettier \"**/*.{js,jsx,css,scss,json,md,mdx,html}\" --write",
     "release": "git checkout master && git pull && yarn test && yarn publish && git push --follow-tags"
   },
-  "dependencies": {
-    "object-assign": "^4.1.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.2.0",

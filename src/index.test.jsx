@@ -58,36 +58,6 @@ test("allows `ref` prop", () => {
 });
 
 describe("merges props", () => {
-  test("merges style prop when adding new `style`", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(
-      <ClickableBox style={{ color: "red" }} onClick={() => {}}>
-        {children}
-      </ClickableBox>
-    );
-
-    expect(getByText(children).style).toMatchObject({
-      // The cursor is built into `ClickableBox`.
-      cursor: "pointer",
-      color: "red"
-    });
-  });
-
-  test("allows overwriting of existing `style` value", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(
-      <ClickableBox style={{ cursor: "help" }} onClick={() => {}}>
-        {children}
-      </ClickableBox>
-    );
-
-    expect(getByText(children).style).toMatchObject({
-      cursor: "help"
-    });
-  });
-
   test("allows overwriting of `tabIndex`", () => {
     const children = "duckduck";
 
@@ -255,20 +225,6 @@ describe("disabled", () => {
     expect(handleClick).toHaveBeenCalledTimes(0);
   });
 
-  test("does not add `cursor: pointer`", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(
-      <ClickableBox style={{ color: "red" }} disabled>
-        {children}
-      </ClickableBox>
-    );
-
-    expect(getByText(children).style).toMatchObject({
-      color: "red"
-    });
-  });
-
   test("does not forward the disabled attribute", () => {
     const children = "duckduck";
 
@@ -316,18 +272,6 @@ describe("`onClick` prop is not provided", () => {
   test("does not error event when clicked on", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
     fireEvent.click(getByText("Submit"));
-  });
-
-  test("does not add `cursor: pointer`", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(
-      <ClickableBox style={{ color: "red" }}>{children}</ClickableBox>
-    );
-
-    expect(getByText(children).style).toMatchObject({
-      color: "red"
-    });
   });
 
   test("does not run passed in `onKeyPress`", () => {

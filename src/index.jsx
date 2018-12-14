@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import objectAssign from "object-assign";
 
 class ClickableBox extends React.Component {
   constructor(props) {
@@ -55,11 +54,6 @@ class ClickableBox extends React.Component {
       <Component
         tabIndex={isActiveButton ? 0 : undefined}
         role={isActiveButton ? "button" : undefined}
-        style={
-          isActiveButton
-            ? objectAssign({}, { cursor: "pointer" }, style)
-            : style
-        }
         onKeyPress={isActiveButton ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
         ref={innerRef}
