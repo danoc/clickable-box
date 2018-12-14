@@ -41,6 +41,7 @@ class ClickableBox extends React.Component {
       innerRef,
       onClick,
       disabled,
+      tabIndex,
       // Prevent `onKeyPress` from being spread since we will call it in
       // `this.onKeyPress` and we don't want the user function to overwrite our
       // behavior.
@@ -52,7 +53,7 @@ class ClickableBox extends React.Component {
 
     return (
       <Component
-        tabIndex={isActiveButton ? 0 : undefined}
+        tabIndex={isActiveButton ? tabIndex : -1}
         role={isActiveButton ? "button" : undefined}
         onKeyPress={isActiveButton ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
@@ -68,6 +69,7 @@ ClickableBox.propTypes = {
   onClick: PropTypes.func,
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
   style: PropTypes.shape({}),
+  tabIndex: PropTypes.number,
   disabled: PropTypes.bool,
   onKeyPress: PropTypes.func,
   innerRef: PropTypes.oneOfType([
@@ -81,6 +83,7 @@ ClickableBox.defaultProps = {
   onClick: undefined,
   is: "span",
   style: undefined,
+  tabIndex: 0,
   disabled: false,
   onKeyPress: undefined,
   innerRef: undefined

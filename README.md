@@ -101,3 +101,8 @@ You can pass any custom prop as well. This component will forward those props to
   cursor: pointer;
 }
 ```
+
+**What are accessibility best practices for `ClickableBox`?**
+
+- Pass `aria-label` to `ClickableBox` if `children` contains an SVG and no descriptive text. The value of `aria-label` should describe the action that will happen if the button is interacted with. It will be announced to users navigating with screen readers.
+- You shouldn't use `ClickableBox` within an anchor tag or another button. You also shouldn't use an `a` or `button` in the `children` prop.
