@@ -57,18 +57,16 @@ test("allows `ref` prop", () => {
   expect(ref.current).toBeTruthy();
 });
 
-describe("merges props", () => {
-  test("allows overwriting of `tabIndex`", () => {
-    const children = "duckduck";
+test("allows overwriting of `tabIndex`", () => {
+  const children = "duckduck";
 
-    const { getByText } = render(
-      <ClickableBox tabIndex={-100} onClick={() => {}}>
-        {children}
-      </ClickableBox>
-    );
+  const { getByText } = render(
+    <ClickableBox tabIndex={-100} onClick={() => {}}>
+      {children}
+    </ClickableBox>
+  );
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe("-100");
-  });
+  expect(getByText(children).getAttribute("tabIndex")).toBe("-100");
 });
 
 describe("events", () => {
@@ -184,14 +182,27 @@ describe("events", () => {
 });
 
 describe("disabled", () => {
-  test("does not add `tabIndex`", () => {
+  test("sets `tabIndex` to `-1`", () => {
     const children = "duckduck";
 
     const { getByText } = render(
       <ClickableBox disabled>{children}</ClickableBox>
     );
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe(null);
+    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+  });
+
+  test("does not allow custom `tabIndex`", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+      <ClickableBox disabled tabIndex={123}>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
   });
 
   test("does not fire event when space is pressed", () => {
@@ -251,12 +262,12 @@ describe("disabled", () => {
 });
 
 describe("`onClick` prop is not provided", () => {
-  test("does not add `tabIndex`", () => {
+  test("sets `tabIndex` to `-1`", () => {
     const children = "duckduck";
 
     const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe(null);
+    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
   });
 
   test("does not error when space is pressed", () => {
