@@ -246,6 +246,16 @@ describe("disabled", () => {
     expect(getByText(children).getAttribute("disabled")).toBeNull();
   });
 
+  test("adds `aria-disabled` when disabled", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox disabled>{children}</ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("aria-disabled")).toBe("true");
+  });
+
   test("does not run passed in `onKeyPress`", () => {
     const onKeyPress = jest.fn();
 

@@ -57,6 +57,7 @@ class ClickableBox extends React.Component {
         role={isActiveButton ? "button" : undefined}
         onKeyPress={isActiveButton ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
+        aria-disabled={!isActiveButton}
         ref={innerRef}
         {...otherProps}
       />
