@@ -56,8 +56,6 @@ class ClickableBox extends React.Component {
       ...otherProps
     } = this.props;
 
-    const isActiveButton = !disabled && !!onClick;
-
     return (
       <Component
         // Don't set `tabIndex` if `disabled`. We do set it though even if
@@ -71,9 +69,11 @@ class ClickableBox extends React.Component {
         // `aria-disabled`, screen readers will announce this the same as
         // a native `button` element.
         role="button"
+        // Only fire these events if the `disabled` prop is not true.
         onKeyPress={!disabled ? this.onKeyPress : undefined}
-        onClick={isActiveButton ? onClick : undefined}
-        aria-disabled={!isActiveButton}
+        onClick={!disabled ? onClick : undefined}
+        // Announce to screen readers that the `ClickableBox` is disabled.
+        aria-disabled={disabled ? "true" : undefined}
         ref={innerRef}
         {...otherProps}
       />

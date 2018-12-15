@@ -79,6 +79,14 @@ test("sets role attribute", () => {
   expect(getByText(children).getAttribute("role")).toBe("button");
 });
 
+test("does not add `aria-disabled` if not disabled", () => {
+  const children = "duckduck";
+
+  const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
+
+  expect(getByText(children).getAttribute("aria-disabled")).toBeNull();
+});
+
 describe("events", () => {
   test("fires event when clicked on", () => {
     const handleClick = jest.fn();
