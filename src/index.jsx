@@ -53,11 +53,13 @@ class ClickableBox extends React.Component {
 
     return (
       <Component
-        // Don't set `tabIndex` if it is disabled or `onClick` is not provided.
-        // We also prevent the user from passing in their own `tabIndex` in
-        // that case. This is better than a `-1` because `-1` will make the
-        // element focusable but not reachable via keyboard navigation.
-        tabIndex={isActiveButton ? tabIndex : undefined}
+        // Don't set `tabIndex` if `disabled`. We do set it though even if
+        // `onClick` is not provided so that it mimics the behavior of a native
+        // `button`. We also prevent the user from passing in their own
+        // `tabIndex` in the case that it is disabled. This is better than a
+        // `-1` because `-1` will make the element focusable but not reachable
+        // via keyboard navigation.
+        tabIndex={!disabled ? tabIndex : undefined}
         // Always have `role="button"`, even if it is disabled. Combined with
         // `aria-disabled`, screen readers will announce this the same as
         // a native `button` element.

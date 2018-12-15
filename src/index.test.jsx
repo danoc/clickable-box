@@ -286,14 +286,6 @@ describe("disabled", () => {
 });
 
 describe("`onClick` prop is not provided", () => {
-  test("`tabIndex` is `null`", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
-
-    expect(getByText(children).getAttribute("tabIndex")).toBeNull();
-  });
-
   test("does not error when space is pressed", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
 
