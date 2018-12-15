@@ -192,7 +192,7 @@ describe("events", () => {
 });
 
 describe("disabled", () => {
-  test("sets `tabIndex` to `-1`", () => {
+  test("`tabIndex` is `null`", () => {
     const children = "duckduck";
 
     const { getByText } = render(
@@ -201,7 +201,7 @@ describe("disabled", () => {
       </ClickableBox>
     );
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+    expect(getByText(children).getAttribute("tabIndex")).toBeNull();
   });
 
   test("does not set role attribute", () => {
@@ -226,7 +226,7 @@ describe("disabled", () => {
       </ClickableBox>
     );
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+    expect(getByText(children).getAttribute("tabIndex")).toBeNull();
   });
 
   test("does not fire event when space is pressed", () => {
@@ -298,12 +298,12 @@ describe("disabled", () => {
 });
 
 describe("`onClick` prop is not provided", () => {
-  test("sets `tabIndex` to `-1`", () => {
+  test("`tabIndex` is `null`", () => {
     const children = "duckduck";
 
     const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
 
-    expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+    expect(getByText(children).getAttribute("tabIndex")).toBeNull();
   });
 
   test("does not set role attribute", () => {
