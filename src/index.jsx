@@ -53,7 +53,11 @@ class ClickableBox extends React.Component {
 
     return (
       <Component
-        tabIndex={isActiveButton ? tabIndex : -1}
+        // Don't set `tabIndex` if it is disabled or `onClick` is not provided.
+        // We also prevent the user from passing in their own `tabIndex` in
+        // that case. This is better than a `-1` because `-1` will make the
+        // element focusable but not reachable via keyboard navigation.
+        tabIndex={isActiveButton ? tabIndex : undefined}
         role={isActiveButton ? "button" : undefined}
         onKeyPress={isActiveButton ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
