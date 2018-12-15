@@ -4,10 +4,14 @@ import ClickableBox from "./index";
 
 afterEach(cleanup);
 
+const charCode = {
+  enter: 13,
+  space: 32,
+  period: 190
+};
+
 const validEnterPress = {
-  key: "Enter",
-  charCode: 13,
-  which: 13
+  charCode: charCode.enter
 };
 
 test("renders into document", () => {
@@ -101,9 +105,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      key: "Space",
-      charCode: 32,
-      which: 32
+      charCode: charCode.space
     });
 
     expect(handleClick).toHaveBeenCalledTimes(1);
@@ -172,9 +174,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      key: ".",
-      charCode: 91,
-      which: 91
+      charCode: charCode.period
     });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
@@ -215,9 +215,7 @@ describe("disabled", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      key: "Space",
-      charCode: 32,
-      which: 32
+      charCode: charCode.space
     });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
@@ -284,9 +282,7 @@ describe("`onClick` prop is not provided", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
 
     fireEvent.keyPress(getByText("Submit"), {
-      key: "Space",
-      charCode: 32,
-      which: 32
+      charCode: charCode.space
     });
   });
 
