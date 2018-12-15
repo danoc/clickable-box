@@ -73,6 +73,16 @@ test("allows overwriting of `tabIndex`", () => {
   expect(getByText(children).getAttribute("tabIndex")).toBe("-100");
 });
 
+test("sets role attribute", () => {
+  const children = "duckduck";
+
+  const { getByText } = render(
+    <ClickableBox onClick={() => {}}>{children}</ClickableBox>
+  );
+
+  expect(getByText(children).getAttribute("role")).toBe("button");
+});
+
 describe("events", () => {
   test("fires event when clicked on", () => {
     const handleClick = jest.fn();
@@ -186,10 +196,24 @@ describe("disabled", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox disabled>{children}</ClickableBox>
+      <ClickableBox disabled onClick={() => {}}>
+        {children}
+      </ClickableBox>
     );
 
     expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+  });
+
+  test("does not set role attribute", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(
+      <ClickableBox disabled onClick={() => {}}>
+        {children}
+      </ClickableBox>
+    );
+
+    expect(getByText(children).getAttribute("role")).toBeNull();
   });
 
   test("does not allow custom `tabIndex`", () => {
@@ -197,7 +221,7 @@ describe("disabled", () => {
 
     const { getByText } = render(
       // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-      <ClickableBox disabled tabIndex={123}>
+      <ClickableBox disabled tabIndex={123} onClick={() => {}}>
         {children}
       </ClickableBox>
     );
@@ -238,7 +262,9 @@ describe("disabled", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox disabled>{children}</ClickableBox>
+      <ClickableBox disabled onClick={() => {}}>
+        {children}
+      </ClickableBox>
     );
 
     expect(getByText(children).getAttribute("disabled")).toBeNull();
@@ -248,7 +274,9 @@ describe("disabled", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      <ClickableBox disabled>{children}</ClickableBox>
+      <ClickableBox disabled onClick={() => {}}>
+        {children}
+      </ClickableBox>
     );
 
     expect(getByText(children).getAttribute("aria-disabled")).toBe("true");
@@ -276,6 +304,14 @@ describe("`onClick` prop is not provided", () => {
     const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
 
     expect(getByText(children).getAttribute("tabIndex")).toBe("-1");
+  });
+
+  test("does not set role attribute", () => {
+    const children = "duckduck";
+
+    const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
+
+    expect(getByText(children).getAttribute("role")).toBeNull();
   });
 
   test("does not error when space is pressed", () => {
