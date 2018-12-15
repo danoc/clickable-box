@@ -23,7 +23,7 @@ class ClickableBox extends React.Component {
     }
 
     switch (event.key) {
-      case "Space":
+      case " ":
         onClick(event);
         break;
       case "Enter":
@@ -49,7 +49,7 @@ class ClickableBox extends React.Component {
       ...otherProps
     } = this.props;
 
-    const isActiveButton = !disabled && onClick;
+    const isActiveButton = !disabled && !!onClick;
 
     return (
       <Component
