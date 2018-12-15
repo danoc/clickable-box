@@ -204,18 +204,6 @@ describe("disabled", () => {
     expect(getByText(children).getAttribute("tabIndex")).toBeNull();
   });
 
-  test("does not set role attribute", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(
-      <ClickableBox disabled onClick={() => {}}>
-        {children}
-      </ClickableBox>
-    );
-
-    expect(getByText(children).getAttribute("role")).toBeNull();
-  });
-
   test("does not allow custom `tabIndex`", () => {
     const children = "duckduck";
 
@@ -304,14 +292,6 @@ describe("`onClick` prop is not provided", () => {
     const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
 
     expect(getByText(children).getAttribute("tabIndex")).toBeNull();
-  });
-
-  test("does not set role attribute", () => {
-    const children = "duckduck";
-
-    const { getByText } = render(<ClickableBox>{children}</ClickableBox>);
-
-    expect(getByText(children).getAttribute("role")).toBeNull();
   });
 
   test("does not error when space is pressed", () => {

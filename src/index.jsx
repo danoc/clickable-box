@@ -58,7 +58,10 @@ class ClickableBox extends React.Component {
         // that case. This is better than a `-1` because `-1` will make the
         // element focusable but not reachable via keyboard navigation.
         tabIndex={isActiveButton ? tabIndex : undefined}
-        role={isActiveButton ? "button" : undefined}
+        // Always have `role="button"`, even if it is disabled. Combined with
+        // `aria-disabled`, screen readers will announce this the same as
+        // a native `button` element.
+        role="button"
         onKeyPress={isActiveButton ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
         aria-disabled={!isActiveButton}
