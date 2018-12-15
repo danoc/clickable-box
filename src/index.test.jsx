@@ -10,10 +10,6 @@ const charCode = {
   period: 190
 };
 
-const validEnterPress = {
-  charCode: charCode.enter
-};
-
 test("renders into document", () => {
   const children = "duckduck";
 
@@ -95,45 +91,89 @@ describe("events", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  test("fires event when enter is pressed", () => {
-    const handleClick = jest.fn();
+  test("fires `onClick` when enter is pressed", () => {
+    const onClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <ClickableBox onClick={onClick}>Submit</ClickableBox>
     );
 
-    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test("fires event when space is pressed", () => {
-    const handleClick = jest.fn();
+  test("fires `onClick` when space is pressed", () => {
+    const onClick = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick}>Submit</ClickableBox>
+      <ClickableBox onClick={onClick}>Submit</ClickableBox>
     );
 
     fireEvent.keyPress(getByText("Submit"), {
       charCode: charCode.space
     });
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  test("runs a passed in `onKeyPress` as well as `onClick` if a valid key is pressed", () => {
-    const handleClick = jest.fn();
+  test("fires `onKeyPress` when space is pressed", () => {
     const onKeyPress = jest.fn();
 
     const { getByText } = render(
-      <ClickableBox onClick={handleClick} onKeyPress={onKeyPress}>
+      <ClickableBox onKeyPress={onKeyPress}>Submit</ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), {
+      charCode: charCode.space
+    });
+
+    expect(onKeyPress).toHaveBeenCalledTimes(1);
+  });
+
+  test("fires `onKeyPress` when enter is pressed", () => {
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onKeyPress={onKeyPress}>Submit</ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
+
+    expect(onKeyPress).toHaveBeenCalledTimes(1);
+  });
+
+  test("runs a passed in `onKeyPress` as well as `onClick` if enter key is pressed", () => {
+    const onClick = jest.fn();
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={onClick} onKeyPress={onKeyPress}>
         Submit
       </ClickableBox>
     );
 
-    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
 
-    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onKeyPress).toHaveBeenCalledTimes(1);
+  });
+
+  test("runs only `onKeyPress` if space key is presssed even though `onClick` is provided", () => {
+    const onClick = jest.fn();
+    const onKeyPress = jest.fn();
+
+    const { getByText } = render(
+      <ClickableBox onClick={onClick} onKeyPress={onKeyPress}>
+        Submit
+      </ClickableBox>
+    );
+
+    fireEvent.keyPress(getByText("Submit"), {
+      charCode: charCode.space
+    });
+
+    expect(onClick).toHaveBeenCalledTimes(0);
     expect(onKeyPress).toHaveBeenCalledTimes(1);
   });
 
@@ -149,7 +189,7 @@ describe("events", () => {
       </ClickableBox>
     );
 
-    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
     expect(onKeyPress).toHaveBeenCalledTimes(1);
@@ -159,7 +199,7 @@ describe("events", () => {
     // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role#Required_JavaScript_Features
     const handleClick = jest.fn();
 
-    const validKey = validEnterPress;
+    const validKey = { charCode: charCode.enter };
 
     const { getByText } = render(
       <ClickableBox onClick={handleClick}>Submit</ClickableBox>
@@ -279,7 +319,7 @@ describe("disabled", () => {
       </ClickableBox>
     );
 
-    fireEvent.keyPress(getByText("Submit"), validEnterPress);
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
 
     expect(onKeyPress).toHaveBeenCalledTimes(0);
   });
@@ -294,20 +334,14 @@ describe("`onClick` prop is not provided", () => {
     });
   });
 
+  test("does not error when enter is pressed", () => {
+    const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
+
+    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
+  });
+
   test("does not error event when clicked on", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
     fireEvent.click(getByText("Submit"));
-  });
-
-  test("does not run passed in `onKeyPress`", () => {
-    const onKeyPress = jest.fn();
-
-    const { getByText } = render(
-      <ClickableBox onKeyPress={onKeyPress}>Submit</ClickableBox>
-    );
-
-    fireEvent.keyPress(getByText("Submit"), validEnterPress);
-
-    expect(onKeyPress).toHaveBeenCalledTimes(0);
   });
 });

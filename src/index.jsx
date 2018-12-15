@@ -11,23 +11,30 @@ class ClickableBox extends React.Component {
   onKeyPress(event) {
     const { onClick, onKeyPress } = this.props;
 
-    // Run user supplied `onKeyPress` first if there is one
-    if (typeof onKeyPress === "function") {
-      onKeyPress(event);
-
-      // Prevent `onClick` from running in the rare case that the user has a custom `onKeyPress`
-      // that contains `event.preventDefault()`.
-      if (event.isDefaultPrevented()) {
-        return;
-      }
-    }
-
     switch (event.key) {
       case " ":
-        onClick(event);
+        // If space is pressed and both `onKeyPress` and `onClick` exist, only
+        // run `onKeyPress`.
+        if (onClick && onKeyPress) {
+          onKeyPress(event);
+        } else if (onKeyPress) {
+          onKeyPress(event);
+        } else if (onClick) {
+          onClick(event);
+        }
         break;
       case "Enter":
-        onClick(event);
+        // `onKeyPress` should run first.
+        if (onKeyPress) {
+          onKeyPress(event);
+
+          // Prevent `onClick` from running in the rare case that the user has
+          // a custom `onKeyPress` that contains `event.preventDefault()`.
+          if (event.isDefaultPrevented()) {
+            return;
+          }
+        }
+        if (onClick) onClick(event);
         break;
       default:
         break;
@@ -64,7 +71,7 @@ class ClickableBox extends React.Component {
         // `aria-disabled`, screen readers will announce this the same as
         // a native `button` element.
         role="button"
-        onKeyPress={isActiveButton ? this.onKeyPress : undefined}
+        onKeyPress={!disabled ? this.onKeyPress : undefined}
         onClick={isActiveButton ? onClick : undefined}
         aria-disabled={!isActiveButton}
         ref={innerRef}
