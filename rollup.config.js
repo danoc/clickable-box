@@ -1,43 +1,28 @@
 import babel from "rollup-plugin-babel";
 import path from "path";
-import fs from "fs";
+import {
+  dependencies,
+  devDependencies,
+  peerDependencies
+} from "./package.json";
 
-const PACKAGE_ROOT_PATH = process.cwd();
+const getConfig = format => {
+  const dest = path.join("dist", format);
 
-const pkg = JSON.parse(
-  fs.readFileSync(path.resolve(PACKAGE_ROOT_PATH, "package.json"))
-);
-
-// Get deps and peerDeps so that rollup knows they are externals.
-const dependencies = Object.keys(pkg.dependencies || {});
-const peerDependencies = Object.keys(pkg.peerDependencies || {});
-const external = dependencies.concat(peerDependencies);
-
-const INPUT_FILE = path.join(PACKAGE_ROOT_PATH, "src/index.jsx");
-const OUTPUT_DIR = path.join(PACKAGE_ROOT_PATH, "dist");
-
-const shared = {
-  input: INPUT_FILE,
-  plugins: [babel()],
-  external
+  return {
+    input: "src/index.jsx",
+    output: {
+      dir: dest,
+      format,
+      sourcemap: true
+    },
+    plugins: [babel()],
+    preserveModules: true,
+    external: id =>
+      (dependencies && dependencies[id]) ||
+      (devDependencies && devDependencies[id]) ||
+      (peerDependencies && peerDependencies[id])
+  };
 };
 
-const es = {
-  output: {
-    file: path.join(OUTPUT_DIR, "index.es.js"),
-    format: "es",
-    sourcemap: true
-  },
-  ...shared
-};
-
-const cjs = {
-  output: {
-    file: path.join(OUTPUT_DIR, "index.cjs.js"),
-    format: "cjs",
-    sourcemap: true
-  },
-  ...shared
-};
-
-export default [es, cjs];
+export default [getConfig("es"), getConfig("cjs")];
