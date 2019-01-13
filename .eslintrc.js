@@ -13,6 +13,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       { packageDir: ["./package.json"] }
-    ]
+    ],
+    "react/no-multi-comp": "off"
   }
 };
