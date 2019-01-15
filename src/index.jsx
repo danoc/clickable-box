@@ -44,7 +44,6 @@ class ClickableBox extends React.Component {
   render() {
     const {
       is: Component,
-      style,
       innerRef,
       onClick,
       disabled,
@@ -84,7 +83,6 @@ class ClickableBox extends React.Component {
 ClickableBox.propTypes = {
   onClick: PropTypes.func,
   is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  style: PropTypes.shape({}),
   tabIndex: PropTypes.number,
   disabled: PropTypes.bool,
   onKeyPress: PropTypes.func,
@@ -98,7 +96,6 @@ ClickableBox.propTypes = {
 ClickableBox.defaultProps = {
   onClick: undefined,
   is: "span",
-  style: undefined,
   tabIndex: 0,
   disabled: false,
   onKeyPress: undefined,
