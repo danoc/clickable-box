@@ -3,7 +3,8 @@ module.exports = {
     "airbnb",
     "plugin:jest/recommended",
     // Prettier must go last so that it can turn off other rules
-    "prettier"
+    "prettier",
+    "prettier/react"
   ],
   plugins: ["jest"],
   env: {
