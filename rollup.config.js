@@ -10,13 +10,17 @@ const getConfig = format => {
   const dest = path.join("dist", format);
 
   return {
-    input: "src/index.jsx",
+    input: "src/index.tsx",
     output: {
       dir: dest,
       format,
       sourcemap: true
     },
-    plugins: [babel()],
+    plugins: [
+      babel({
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
+      })
+    ],
     preserveModules: true,
     external: id =>
       (dependencies && dependencies[id]) ||

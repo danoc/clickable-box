@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist/ts",
+    "module": "es6",
+    "outDir": "./dist",
+    "target": "es5",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "jsx": "react"
+  },
+  "include": ["src/index.tsx"],
+  "exclude": ["node_modules"]
+}
