@@ -4,8 +4,10 @@
   "version": "0.1.8",
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
-  "main": "dist/cjs/index.jsx",
-  "module": "dist/es/index.jsx",
+  "main": "dist/clickable-box.js",
+  "umd:main": "dist/clickable-box.umd.js",
+  "module": "dist/clickable-box.mjs",
+  "source": "src/index.jsx",
   "files": [
     "dist"
   ],
@@ -14,7 +16,7 @@
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js",
     "test:jest": "jest --coverage",
     "test:prettier": "prettier \"**/*.{js,jsx,css,scss,json,md,mdx,html}\" --list-different",
-    "prepublishOnly": "rm -rf dist && rollup -c=./rollup.config.js",
+    "prepublishOnly": "microbundle --globals prop-types=PropTypes,react=React",
     "format": "prettier \"**/*.{js,jsx,css,scss,json,md,mdx,html}\" --write",
     "release": "git checkout master && git pull && yarn test && yarn publish && git push --follow-tags"
   },
@@ -35,14 +37,13 @@
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.4",
     "jest": "^24.0.0",
+    "microbundle": "^0.11.0",
     "prettier": "1.16.1",
     "pretty-quick": "^1.8.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-testing-library": "^5.2.3",
-    "rollup": "^1.1.0",
-    "rollup-plugin-babel": "^4.3.0"
+    "react-testing-library": "^5.2.3"
   },
   "peerDependencies": {
     "prop-types": "^15.0.0",
