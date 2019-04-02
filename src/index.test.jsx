@@ -20,6 +20,10 @@ test("renders into document", () => {
   expect(getByText(children).textContent).toBe(children);
 });
 
+test("Has readable displayName", () => {
+  expect(ClickableBox.render.displayName).toBe("ClickableBox");
+});
+
 describe("element type", () => {
   test("renders a `span` by default", () => {
     const { container } = render(<ClickableBox />);

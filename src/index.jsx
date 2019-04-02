@@ -102,6 +102,10 @@ ClickableBox.defaultProps = {
   innerRef: undefined
 };
 
-export default React.forwardRef((props, ref) => (
-  <ClickableBox innerRef={ref} {...props} />
-));
+function forwardRef(props, ref) {
+  return <ClickableBox innerRef={ref} {...props} />;
+}
+
+forwardRef.displayName = "ClickableBox";
+
+export default React.forwardRef(forwardRef);
