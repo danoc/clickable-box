@@ -13,6 +13,10 @@ class ClickableBox extends React.Component {
 
     switch (event.key) {
       case " ":
+      case "Spacebar": // Old browsers.
+        // Prevent scrolling when pressing Spacebar.
+        event.preventDefault();
+
         // If space is pressed and both `onKeyPress` and `onClick` exist, only
         // run `onKeyPress`.
         if (onClick && onKeyPress) {
