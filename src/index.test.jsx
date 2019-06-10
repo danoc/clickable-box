@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render, fireEvent } from "react-testing-library";
+import { cleanup, render, fireEvent } from "@testing-library/react";
 import ClickableBox from "./index";
 
 afterEach(cleanup);
