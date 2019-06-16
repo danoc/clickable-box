@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, render, fireEvent } from "@testing-library/react";
-import ClickableBox from "./index";
+import ClickableBox from "./index.tsx";
 
 afterEach(cleanup);
 
@@ -20,7 +20,7 @@ test("renders into document", () => {
   expect(getByText(children).textContent).toBe(children);
 });
 
-test("Has readable displayName", () => {
+test("has readable `displayName`", () => {
   expect(ClickableBox.render.displayName).toBe("ClickableBox");
 });
 

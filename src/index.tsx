@@ -1,14 +1,27 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-class ClickableBox extends React.Component {
-  constructor(props) {
+interface ClickableBoxProps {
+  onClick?: Function;
+  is?:
+    | keyof JSX.IntrinsicElements
+    | React.ComponentClass<any, any>
+    | React.FunctionComponent<any>;
+  tabIndex?: number;
+  onKeyPress?(event: React.KeyboardEvent<HTMLElement>): void;
+  disabled?: boolean;
+  innerRef?(ref: React.ReactNode): void;
+  // Allow arbitrary props.
+  [key: string]: any;
+}
+
+class ClickableBox extends React.Component<ClickableBoxProps, any> {
+  constructor(props: ClickableBoxProps) {
     super(props);
 
     this.onKeyPress = this.onKeyPress.bind(this);
   }
 
-  onKeyPress(event) {
+  onKeyPress(event: React.KeyboardEvent<HTMLElement>) {
     const { onClick, onKeyPress } = this.props;
 
     switch (event.key) {
@@ -47,11 +60,11 @@ class ClickableBox extends React.Component {
 
   render() {
     const {
-      is: Component,
+      is: Component = "span",
       innerRef,
       onClick,
       disabled,
-      tabIndex,
+      tabIndex = 0,
       // Prevent `onKeyPress` from being spread since we will call it in
       // `this.onKeyPress` and we don't want the user function to overwrite our
       // behavior.
@@ -84,29 +97,7 @@ class ClickableBox extends React.Component {
   }
 }
 
-ClickableBox.propTypes = {
-  onClick: PropTypes.func,
-  is: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  tabIndex: PropTypes.number,
-  disabled: PropTypes.bool,
-  onKeyPress: PropTypes.func,
-  innerRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.string,
-    PropTypes.object
-  ])
-};
-
-ClickableBox.defaultProps = {
-  onClick: undefined,
-  is: "span",
-  tabIndex: 0,
-  disabled: false,
-  onKeyPress: undefined,
-  innerRef: undefined
-};
-
-function forwardRef(props, ref) {
+function forwardRef(props: ClickableBoxProps, ref: any) {
   return <ClickableBox innerRef={ref} {...props} />;
 }
 
