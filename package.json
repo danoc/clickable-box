@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "yarn test:eslint && yarn test:jest && yarn test:prettier",
+    "test": "npm run test:eslint && npm run test:jest && npm run test:prettier",
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js --ext .tsx --ext .ts",
     "test:jest": "jest --coverage",
     "test:prettier": "prettier \"**/*.{js,jsx,ts,tsx,css,scss,json,md,mdx,html}\" --list-different",
