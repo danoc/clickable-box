@@ -1,4 +1,7 @@
 sudo: false
+branches:
+  only:
+    - pr/daniel/typescript
 language: node_js
 script:
   - yarn test
