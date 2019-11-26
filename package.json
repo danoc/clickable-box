@@ -4,10 +4,11 @@
   "version": "1.0.0",
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
-  "main": "dist/clickable-box.js",
-  "umd:main": "dist/clickable-box.umd.js",
-  "module": "dist/clickable-box.mjs",
-  "source": "src/index.tsx",
+  "main": "./dist/clickable-box.js",
+  "umd:main": "./dist/clickable-box.umd.js",
+  "module": "./dist/clickable-box.mjs",
+  "source": "./src/index.tsx",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
