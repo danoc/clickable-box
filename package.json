@@ -1,7 +1,7 @@
 {
   "name": "clickable-box",
   "description": "Add `onClick` to HTML elements without sacrificing accessibility.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Daniel O'Connor <daniel@danoc.me>",
   "license": "MIT",
   "main": "./dist/clickable-box.js",
