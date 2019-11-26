@@ -1,4 +1,5 @@
 module.exports = {
+  parser: "@typescript-eslint/parser",
   extends: [
     "airbnb",
     "plugin:jest/recommended",
@@ -11,6 +12,6 @@ module.exports = {
     "jest/globals": true
   },
   rules: {
-    "react/no-multi-comp": "off"
+    "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }]
   }
 };
