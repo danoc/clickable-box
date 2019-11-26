@@ -9,12 +9,12 @@ interface ClickableBoxProps {
   tabIndex?: number;
   onKeyPress?(event: React.KeyboardEvent<HTMLElement>): void;
   disabled?: boolean;
-  innerRef?(ref: React.ReactNode): void;
+  innerRef?: React.Ref<HTMLElement>;
   // Allow arbitrary props.
   [key: string]: any;
 }
 
-class ClickableBox extends React.Component<ClickableBoxProps, any> {
+class ClickableBox extends React.Component<ClickableBoxProps> {
   constructor(props: ClickableBoxProps) {
     super(props);
 
@@ -97,7 +97,7 @@ class ClickableBox extends React.Component<ClickableBoxProps, any> {
   }
 }
 
-function forwardRef(props: ClickableBoxProps, ref: any) {
+function forwardRef(props: ClickableBoxProps, ref?: React.Ref<HTMLElement>) {
   return <ClickableBox innerRef={ref} {...props} />;
 }
 

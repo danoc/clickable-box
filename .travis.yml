@@ -1,13 +1,4 @@
-sudo: false
 language: node_js
-cache:
-  directories:
-    - node_modules
-branches:
-  only:
-    - pr/daniel/typescript
-before_script:
-  - npm prune
 script:
   - npm run test
   - codecov
