@@ -32,7 +32,7 @@ jobs:
           yarn install --frozen-lockfile
       - name: Run ESLint
         run: |
-          yarn run test:lint:js
+          yarn run test:eslint
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
