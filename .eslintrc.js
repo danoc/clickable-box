@@ -5,13 +5,13 @@ module.exports = {
     "plugin:jest/recommended",
     // Prettier must go last so that it can turn off other rules
     "prettier",
-    "prettier/react"
+    "prettier/react",
   ],
   plugins: ["jest"],
   env: {
-    "jest/globals": true
+    "jest/globals": true,
   },
   rules: {
-    "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }]
-  }
+    "react/jsx-filename-extension": ["error", { extensions: [".jsx", ".tsx"] }],
+  },
 };

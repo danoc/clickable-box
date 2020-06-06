@@ -7,7 +7,7 @@ afterEach(cleanup);
 const charCode = {
   enter: 13,
   space: 32,
-  period: 190
+  period: 190,
 };
 
 test("renders into document", () => {
@@ -123,7 +123,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.space
+      charCode: charCode.space,
     });
 
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -137,7 +137,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.space
+      charCode: charCode.space,
     });
 
     expect(onKeyPress).toHaveBeenCalledTimes(1);
@@ -182,7 +182,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.space
+      charCode: charCode.space,
     });
 
     expect(onClick).toHaveBeenCalledTimes(0);
@@ -191,7 +191,7 @@ describe("events", () => {
 
   test("does not run `onClick` if a valid key is pressed, the consumer passes in their on `onKeyPress`, and the consumer's `onKeyPress` prevents the event", () => {
     const handleClick = jest.fn();
-    const onKeyPress = jest.fn().mockImplementation(event => {
+    const onKeyPress = jest.fn().mockImplementation((event) => {
       event.preventDefault();
     });
 
@@ -236,7 +236,7 @@ describe("events", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.period
+      charCode: charCode.period,
     });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
@@ -279,7 +279,7 @@ describe("disabled", () => {
     );
 
     fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.space
+      charCode: charCode.space,
     });
 
     expect(handleClick).toHaveBeenCalledTimes(0);
@@ -341,19 +341,26 @@ describe("`onClick` prop is not provided", () => {
   test("does not error when space is pressed", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
 
-    fireEvent.keyPress(getByText("Submit"), {
-      charCode: charCode.space
-    });
+    expect(() => {
+      fireEvent.keyPress(getByText("Submit"), {
+        charCode: charCode.space,
+      });
+    }).not.toThrow();
   });
 
   test("does not error when enter is pressed", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
 
-    fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
+    expect(() => {
+      fireEvent.keyPress(getByText("Submit"), { charCode: charCode.enter });
+    }).not.toThrow();
   });
 
   test("does not error event when clicked on", () => {
     const { getByText } = render(<ClickableBox>Submit</ClickableBox>);
-    fireEvent.click(getByText("Submit"));
+
+    expect(() => {
+      fireEvent.click(getByText("Submit"));
+    }).not.toThrow();
   });
 });

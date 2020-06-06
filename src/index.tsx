@@ -91,6 +91,7 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
         // Announce to screen readers that the `ClickableBox` is disabled.
         aria-disabled={disabled ? "true" : undefined}
         ref={innerRef}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       />
     );
@@ -98,6 +99,7 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
 }
 
 function forwardRef(props: ClickableBoxProps, ref?: React.Ref<HTMLElement>) {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <ClickableBox innerRef={ref} {...props} />;
 }
 
