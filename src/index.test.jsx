@@ -1,8 +1,6 @@
 import React from "react";
-import { cleanup, render, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import ClickableBox from "./index.tsx";
-
-afterEach(cleanup);
 
 const charCode = {
   enter: 13,
