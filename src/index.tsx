@@ -92,6 +92,7 @@ const ClickableBox = React.forwardRef<HTMLElement, ClickableBoxProps>(
   }
 );
 
+// This is needed because of the `forwardRef`.
 ClickableBox.displayName = "ClickableBox";
 
 export default ClickableBox;
