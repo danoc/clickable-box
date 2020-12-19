@@ -1,9 +1,6 @@
 name: Test
 
-on:
-  push:
-    branches-ignore:
-      - "changeset-release/master"
+on: [push]
 
 jobs:
   jest:
