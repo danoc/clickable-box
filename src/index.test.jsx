@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import ClickableBox from "./index.tsx";
@@ -258,7 +259,6 @@ describe("disabled", () => {
     const children = "duckduck";
 
     const { getByText } = render(
-      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       <ClickableBox disabled tabIndex={123} onClick={() => {}}>
         {children}
       </ClickableBox>

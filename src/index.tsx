@@ -1,16 +1,18 @@
 import React from "react";
 
 interface ClickableBoxProps {
-  onClick?: Function;
-  is?:
-    | keyof JSX.IntrinsicElements
-    | React.ComponentClass<any, any>
-    | React.FunctionComponent<any>;
+  onClick?(
+    event:
+      | React.MouseEvent<HTMLElement, MouseEvent>
+      | React.KeyboardEvent<HTMLElement>
+  ): void;
+  is?: keyof JSX.IntrinsicElements | React.ElementType;
   tabIndex?: number;
   onKeyPress?(event: React.KeyboardEvent<HTMLElement>): void;
   disabled?: boolean;
   innerRef?: React.Ref<HTMLElement>;
   // Allow arbitrary props.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -68,6 +70,7 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
       // Prevent `onKeyPress` from being spread since we will call it in
       // `this.onKeyPress` and we don't want the user function to overwrite our
       // behavior.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onKeyPress,
       ...otherProps
     } = this.props;
@@ -91,7 +94,6 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
         // Announce to screen readers that the `ClickableBox` is disabled.
         aria-disabled={disabled ? "true" : undefined}
         ref={innerRef}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       />
     );
@@ -99,7 +101,6 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
 }
 
 function forwardRef(props: ClickableBoxProps, ref?: React.Ref<HTMLElement>) {
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <ClickableBox innerRef={ref} {...props} />;
 }
 
