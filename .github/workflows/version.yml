@@ -1,4 +1,4 @@
-name: Version
+name: Publish
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   version:
-    name: Release PR
+    name: Create release PR or publish to NPM
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -28,7 +28,10 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-      - name: Create or update release PR
+      - name: Create release PR or publish to NPM
         uses: changesets/action@master
+        with:
+          publish: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -18,9 +18,8 @@
     "test:eslint": "eslint . --ignore-path .gitignore --ext .jsx --ext .js --ext .tsx --ext .ts",
     "test:jest": "jest",
     "test:prettier": "prettier \"**/*.{js,jsx,ts,tsx,css,scss,json,md,mdx,html}\" --list-different",
-    "prepublishOnly": "microbundle --jsx React.createElement",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,css,scss,json,md,mdx,html}\" --write",
-    "release": "np"
+    "release": "rm -rf dist && yarn install --frozen-lockfile && yarn test && yarn microbundle --jsx React.createElement && yarn changeset release"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.12.7",
@@ -37,7 +36,6 @@
     "husky": "^4.3.6",
     "jest": "^26.6.3",
     "microbundle": "^0.12.4",
-    "np": "^7.0.0",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react": "^17.0.1",
