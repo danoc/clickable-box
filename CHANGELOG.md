@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.5
+
+### Patch Changes
+
+- 5900b63: Add comment explaining the use of `displayName`.
+
 ## 1.1.4
 
 ### Patch Changes
