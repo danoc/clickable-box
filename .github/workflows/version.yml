@@ -7,7 +7,7 @@ on:
 
 jobs:
   version:
-    name: Version
+    name: Changesets
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-      - name: Create release Pull Request
+      - name: Create release PR
         uses: changesets/action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
