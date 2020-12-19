@@ -1,4 +1,4 @@
-name: Publish
+name: Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  version:
+  release:
     name: Create release PR or publish to NPM
     runs-on: ubuntu-latest
     steps:
