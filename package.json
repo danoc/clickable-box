@@ -19,7 +19,7 @@
     "test:jest": "jest",
     "test:prettier": "prettier \"**/*.{js,jsx,ts,tsx,css,scss,json,md,mdx,html}\" --list-different",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,css,scss,json,md,mdx,html}\" --write",
-    "release": "rm -rf dist && yarn install --frozen-lockfile && yarn test && yarn microbundle --jsx React.createElement && yarn changeset release"
+    "release": "rm -rf dist && yarn install --frozen-lockfile && yarn test && yarn microbundle --jsx React.createElement && yarn changeset publish"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.12.7",
