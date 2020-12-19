@@ -16,54 +16,10 @@ interface ClickableBoxProps {
   [key: string]: any;
 }
 
-class ClickableBox extends React.Component<ClickableBoxProps> {
-  constructor(props: ClickableBoxProps) {
-    super(props);
-
-    this.onKeyPress = this.onKeyPress.bind(this);
-  }
-
-  onKeyPress(event: React.KeyboardEvent<HTMLElement>) {
-    const { onClick, onKeyPress } = this.props;
-
-    switch (event.key) {
-      case " ":
-      case "Spacebar": // Support FF <= 37, IE 9-11.
-        // Prevent scrolling when pressing `Spacebar`.
-        event.preventDefault();
-
-        // If space is pressed and both `onKeyPress` and `onClick` exist, only
-        // run `onKeyPress`.
-        if (onClick && onKeyPress) {
-          onKeyPress(event);
-        } else if (onKeyPress) {
-          onKeyPress(event);
-        } else if (onClick) {
-          onClick(event);
-        }
-        break;
-      case "Enter":
-        // `onKeyPress` should run first.
-        if (onKeyPress) {
-          onKeyPress(event);
-
-          // Prevent `onClick` from running in the rare case that the user has
-          // a custom `onKeyPress` that contains `event.preventDefault()`.
-          if (event.isDefaultPrevented()) {
-            return;
-          }
-        }
-        if (onClick) onClick(event);
-        break;
-      default:
-        break;
-    }
-  }
-
-  render() {
+const ClickableBox = React.forwardRef<HTMLElement, ClickableBoxProps>(
+  (props: ClickableBoxProps, ref) => {
     const {
       is: Component = "span",
-      innerRef,
       onClick,
       disabled,
       tabIndex = 0,
@@ -73,8 +29,7 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       onKeyPress,
       ...otherProps
-    } = this.props;
-
+    } = props;
     return (
       <Component
         // Don't set `tabIndex` if `disabled`. We do set it though even if
@@ -89,21 +44,54 @@ class ClickableBox extends React.Component<ClickableBoxProps> {
         // a native `button` element.
         role="button"
         // Only fire these events if the `disabled` prop is not true.
-        onKeyPress={!disabled ? this.onKeyPress : undefined}
+        onKeyPress={
+          !disabled
+            ? (event: React.KeyboardEvent<HTMLElement>) => {
+                switch (event.key) {
+                  case " ":
+                  case "Spacebar": // Support FF <= 37, IE 9-11.
+                    // Prevent scrolling when pressing `Spacebar`.
+                    event.preventDefault();
+
+                    // If space is pressed and both `onKeyPress` and `onClick` exist, only
+                    // run `onKeyPress`.
+                    if (onClick && onKeyPress) {
+                      onKeyPress(event);
+                    } else if (onKeyPress) {
+                      onKeyPress(event);
+                    } else if (onClick) {
+                      onClick(event);
+                    }
+                    break;
+                  case "Enter":
+                    // `onKeyPress` should run first.
+                    if (onKeyPress) {
+                      onKeyPress(event);
+
+                      // Prevent `onClick` from running in the rare case that the user has
+                      // a custom `onKeyPress` that contains `event.preventDefault()`.
+                      if (event.isDefaultPrevented()) {
+                        return;
+                      }
+                    }
+                    if (onClick) onClick(event);
+                    break;
+                  default:
+                    break;
+                }
+              }
+            : undefined
+        }
         onClick={!disabled ? onClick : undefined}
         // Announce to screen readers that the `ClickableBox` is disabled.
         aria-disabled={disabled ? "true" : undefined}
-        ref={innerRef}
+        ref={ref}
         {...otherProps}
       />
     );
   }
-}
+);
 
-function forwardRef(props: ClickableBoxProps, ref?: React.Ref<HTMLElement>) {
-  return <ClickableBox innerRef={ref} {...props} />;
-}
+ClickableBox.displayName = "ClickableBox";
 
-forwardRef.displayName = "ClickableBox";
-
-export default React.forwardRef(forwardRef);
+export default ClickableBox;
