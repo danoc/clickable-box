@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.4
+
+### Patch Changes
+
+- a38e89e: Use changeset for automatic releases to NPM
+
 ## 1.1.3
 
 ### Patch Changes
