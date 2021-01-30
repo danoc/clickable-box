@@ -6,10 +6,9 @@
   "license": "MIT",
   "source": "./src/index.tsx",
   "main": "./dist/clickable-box.js",
-  "exports": "./dist/clickable-box.modern.js",
   "module": "./dist/clickable-box.module.js",
   "unpkg": "./dist/clickable-box.umd.js",
-  "types": "./dist/clickable-box.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
