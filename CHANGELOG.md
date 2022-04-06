@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.7
+
+### Patch Changes
+
+- e6112a2: Indicate React 18 support in `peerDependencies`
+
 ## 1.1.6
 
 ### Patch Changes
