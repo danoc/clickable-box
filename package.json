@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.12.7",
-    "@changesets/cli": "^2.14.0",
+    "@changesets/cli": "^2.25.0",
     "@testing-library/react": "^11.2.3",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",
