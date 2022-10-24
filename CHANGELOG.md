@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.8
+
+### Patch Changes
+
+- a872a02: Upgrade microbundle, the tool used for publishing packages
+
 ## 1.1.7
 
 ### Patch Changes
