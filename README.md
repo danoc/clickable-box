@@ -12,17 +12,13 @@ The `ClickableBox` React component accepts an `onClick` prop and an element to r
 
 ## Install
 
-You can install `ClickableBox` with NPM or Yarn.
+You can install `ClickableBox` with npm, Yarn, or pnpm.
 
 ```bash
-npm install clickable-box --save-exact
+npm install clickable-box
+yarn add clickable-box
+pnpm install clickable-box
 ```
-
-```bash
-yarn add clickable-box --exact
-```
-
-We encourage pinning the version number until `ClickableBox` reaches `1.0.0`. We may ship breaking changes in `0.x.x` versions.
 
 ## Usage
 
