@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babel/preset-typescript': ^7.12.7
   '@changesets/cli': ^2.25.0
   '@testing-library/react': ^11.2.3
   '@types/jest': ^26.0.20
@@ -19,7 +18,6 @@ specifiers:
   react-dom: ^17.0.1
 
 devDependencies:
-  '@babel/preset-typescript': 7.12.7
   '@changesets/cli': 2.25.0
   '@testing-library/react': 11.2.3_w7o5yyljkiidx2s2nzb26ottzu
   '@types/jest': 26.0.20
@@ -117,20 +115,6 @@ packages:
       '@babel/helper-validator-option': 7.12.11
       browserslist: 4.16.0
       semver: 5.7.1
-    dev: true
-
-  /@babel/helper-create-class-features-plugin/7.12.1:
-    resolution: {integrity: sha512-hkL++rWeta/OVOBTRJc9a5Azh5mt5WgZUGAKMD8JM141YsE08K//bp1unBBieO6rUKkIPyUE0USQ30jAy3Sk1w==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/helper-function-name': 7.12.11
-      '@babel/helper-member-expression-to-functions': 7.12.7
-      '@babel/helper-optimise-call-expression': 7.12.10
-      '@babel/helper-replace-supers': 7.12.11
-      '@babel/helper-split-export-declaration': 7.12.11
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@babel/helper-create-class-features-plugin/7.12.1_@babel+core@7.12.10:
@@ -610,14 +594,6 @@ packages:
       '@babel/helper-plugin-utils': 7.10.4
     dev: true
 
-  /@babel/plugin-syntax-typescript/7.12.1:
-    resolution: {integrity: sha512-UZNEcCY+4Dp9yYRCAHrHDU+9ZXLYaY9MgBXSRLkB9WjYFRR6quJBumfVrEkUxrePPBwFcpWfNKXqVRQQtm7mMA==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/helper-plugin-utils': 7.10.4
-    dev: true
-
   /@babel/plugin-transform-arrow-functions/7.12.1_@babel+core@7.12.10:
     resolution: {integrity: sha512-5QB50qyN44fzzz4/qxDPQMBCTHgxg3n0xRBLJUmBlLoU/sFvxVWGZF/ZUfMVDQuJUKXaBhbupxIzIfZ6Fwk/0A==}
     peerDependencies:
@@ -978,18 +954,6 @@ packages:
       '@babel/helper-plugin-utils': 7.10.4
     dev: true
 
-  /@babel/plugin-transform-typescript/7.12.1:
-    resolution: {integrity: sha512-VrsBByqAIntM+EYMqSm59SiMEf7qkmI9dqMt6RbD/wlwueWmYcI0FFK5Fj47pP6DRZm+3teXjosKlwcZJ5lIMw==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/helper-create-class-features-plugin': 7.12.1
-      '@babel/helper-plugin-utils': 7.10.4
-      '@babel/plugin-syntax-typescript': 7.12.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@babel/plugin-transform-unicode-escapes/7.12.1_@babel+core@7.12.10:
     resolution: {integrity: sha512-I8gNHJLIc7GdApm7wkVnStWssPNbSRMPtgHdmH3sRM1zopz09UWPS4x5V4n1yz/MIWTVnJ9sp6IkuXdWM4w+2Q==}
     peerDependencies:
@@ -1119,18 +1083,6 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.12.11_@babel+core@7.12.10
       '@babel/plugin-transform-react-jsx-development': 7.12.11_@babel+core@7.12.10
       '@babel/plugin-transform-react-pure-annotations': 7.12.1_@babel+core@7.12.10
-    dev: true
-
-  /@babel/preset-typescript/7.12.7:
-    resolution: {integrity: sha512-nOoIqIqBmHBSEgBXWR4Dv/XBehtIFcw9PqZw6rFYuKrzsZmOQm3PR5siLBnKZFEsDb03IegG8nSjU/iXXXYRmw==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/helper-plugin-utils': 7.10.4
-      '@babel/helper-validator-option': 7.12.11
-      '@babel/plugin-transform-typescript': 7.12.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@babel/runtime-corejs3/7.12.5:
