@@ -1,5 +1,18 @@
 # clickable-box
 
+## 1.1.7
+
+### Patch Changes
+
+- e6112a2: Indicate React 18 support in `peerDependencies`
+
+## 1.1.6
+
+### Patch Changes
+
+- 1075be3: Upgrade non-breaking dependencies.
+- 9acba11: Fix path to TypeScript definitions, remove broken modern bundle
+
 ## 1.1.5
 
 ### Patch Changes
