@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup environment with pnpm
-        uses: danoc/pnpm-setup-composite-action@v1
+        uses: danoc/pnpm-setup-composite-action@v2
         with:
           checkout-fetch-depth: '0'
       - name: Create release PR or publish to NPM
