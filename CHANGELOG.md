@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.9
+
+### Patch Changes
+
+- 2a8d77b: Actually upgrade microbundle. The previous attempt forgot didn't actually upgrade it.
+
 ## 1.1.8
 
 ### Patch Changes
