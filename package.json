@@ -13,7 +13,7 @@
   "main": "./dist/clickable-box.cjs",
   "module": "./dist/clickable-box.module.js",
   "unpkg": "./dist/clickable-box.umd.js",
-  "types": "./dist/clickable-box.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
