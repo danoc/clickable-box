@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.10
+
+### Patch Changes
+
+- 31ddbfd: Fix the path to the TypeScript types
+
 ## 1.1.9
 
 ### Patch Changes
