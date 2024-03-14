@@ -1,5 +1,11 @@
 # clickable-box
 
+## 1.1.11
+
+### Patch Changes
+
+- b995f3e: Bump word-wrap from 1.2.3 to 1.2.4
+
 ## 1.1.10
 
 ### Patch Changes
